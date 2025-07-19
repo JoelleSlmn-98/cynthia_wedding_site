@@ -46,6 +46,10 @@ def list_files():
 def gallery():
     return render_template('gallery.html')
 
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 @app.route('/<path:filename>')
 def serve_static_file(filename):
     return send_from_directory('static', filename)
