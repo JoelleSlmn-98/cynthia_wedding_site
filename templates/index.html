@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery | Cynthia & Samer</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cynthia & Samer's Wedding</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
       --forest: #14160f;
@@ -16,252 +16,139 @@
     }
     body {
       font-family: 'Great Vibes', cursive;
+    }
+    nav ul li a {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      background-color: var(--pine);
+      color: var(--linen);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    nav ul li a:hover {
       background-color: var(--linen);
-      color: var(--forest);
-    }
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
-      flex-direction: column;
-    }
-    .modal img, .modal video {
-      max-height: 80vh;
-      max-width: 90vw;
-      border: 4px solid white;
-      border-radius: 0.5rem;
-    }
-    .modal-controls {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      padding: 0 1rem;
-    }
-    .modal-controls button {
-      background: white;
-      border: none;
-      font-size: 2rem;
-      padding: 0 1rem;
-      cursor: pointer;
-    }
-    .modal-toolbar {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 1rem;
-    }
-    .modal-toolbar img {
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-      filter: invert(1);
-    }
-    .comment-section {
-      margin-top: 1rem;
-      width: 90%;
-      max-width: 600px;
-      background: white;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      color: black;
-    }
-    .comment-form {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      margin-top: 0.5rem;
-    }
-    .comment-form input, .comment-form textarea {
-      height: 38px;
-      padding: 0.5rem;
-      border: 1px solid var(--pine);
-      border-radius: 0.25rem;
-      font-size: 1rem;
-      font-family: sans-serif;
-    }
-    .comment-form input {
-      width: 30%;
-    }
-    .comment-form textarea {
-      width: 60%;
-      resize: none;
-      height: 38px;
-    }
-    .comment-form button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    .comment-form button img {
-      width: 28px;
-      height: 28px;
-    }
-    .comments-display {
-      font-size: 1rem;
-      color: black;
-      text-align: left;
-      margin-bottom: 0.5rem;
-    }
-    .comments-display div {
-      margin-bottom: 0.25rem;
-    }
-    .comment-name {
-      font-weight: bold;
+      color: var(--pine);
     }
   </style>
 </head>
-<body class="min-h-screen px-6 py-12">
-  <h1 class="text-5xl text-center mb-16">Wedding Gallery</h1>
-  <div class="text-center mb-10">
-    <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data" class="inline-block">
-      <input type="file" name="file" accept="image/*,video/*" class="mb-4 text-black" multiple>
-      <br>
-      <button type="submit" class="bg-[var(--pine)] text-[var(--linen)] px-6 py-2 rounded hover:bg-[var(--olive)]">Upload</button>
-    </form>
+<body class="bg-[var(--linen)] text-[var(--forest)]">
+  <!-- Navbar -->
+  
+<nav class="fixed top-0 w-full bg-[var(--pine)] text-white shadow z-50">
+  <div class="container mx-auto flex justify-between items-center p-4">
+    <span class="text-xl font-bold">Cynthia & Samer</span>
+    <button class="md:hidden" id="nav-toggle">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+    <ul id="nav-menu" class="hidden md:flex space-x-4 flex-col md:flex-row absolute md:static bg-[var(--pine)] md:bg-transparent w-full left-0 top-16 md:top-auto p-4 md:p-0 z-50">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+      <li><a href="#details">More Details</a></li>
+      <li><a href="#venue">Venue</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#registry">Registry</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#seating">Seating</a></li>
+    </ul>
   </div>
-  <div id="gallery" class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"></div>
+</nav>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  });
+</script>
 
-  <div id="modal" class="modal hidden">
-    <div class="modal-controls">
-      <button id="prev">⟵</button>
-      <button id="next">⟶</button>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative h-screen w-full pt-24">
+    <img src="hero photo.jpg" alt="Wedding banner" class="absolute top-0 left-0 w-full h-full object-cover z-0">
+    
+    <div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-[var(--linen)] px-4 pt-32 md:pt-48">
+      <h1 class="text-5xl mb-4">Cynthia Youwakim & Samer Dib</h1>
+      <p class="text-2xl mb-2">Are Getting Married!</p>
+      <p class="text-xl">Saturday, June 20, 2026 - Blanchic</p>
+      <p class="text-xl">Baabdath, Metn</p>
     </div>
-    <div class="modal-toolbar">
-      <a id="downloadLink" href="#" download class="text-white hover:text-gray-300" title="Download">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-  </svg>
-</a>
-      <button id="closeModal" title="Close" class="text-white hover:text-gray-300">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-  </svg>
-</button>
+
+      <h1 class="text-5xl mb-4">Cynthia Youwakim & Samer Dib</h1>
+      <p class="text-2xl mb-2">Are Getting Married!</p>
+      <p class="text-xl">Saturday, June 20, 2026 - St. George's Cathedral</p>
+      <p class="text-xl">Montreal, Canada</p>
     </div>
-    <div id="modalContent"></div>
-    <div class="comment-section">
-      <div id="comments" class="comments-display"></div>
-      <div class="comment-form">
-        <input type="text" id="commenter" placeholder="Your name" />
-        <textarea id="commentText" placeholder="Leave a comment..."></textarea>
-        <button onclick="submitComment()" title="Submit" class="text-[var(--pine)] hover:text-[var(--olive)]">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-  </svg>
-</button>
+  </section>
+
+  <section id="rsvp" class="py-24 px-4 bg-[var(--olive)] text-white">
+    <h2 class="text-4xl text-center mb-6">RSVP</h2>
+    <div class="max-w-4xl mx-auto">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnF9IDA04zRfdRAlLlHIz2ZEzQalh0WX_7B5mAqPbc-k4RnA/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+  </section>
+
+  <section id="details" class="py-24 px-4 bg-[var(--linen)] text-[var(--forest)]">
+    <h2 class="text-4xl text-center mb-6">Wedding Details</h2>
+    <ul class="text-center space-y-2">
+      <li><strong>Dress Code:</strong> Formal</li>
+      <li><strong>Schedule:</strong> Coming soon...</li>
+    </ul>
+  </section>
+
+  <section id="venue" class="py-24 px-4 bg-[var(--stone)] text-white">
+    <h2 class="text-4xl text-center mb-6">Venue</h2>
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="mb-6">Our celebration will take place at <strong>Blanchic</strong>, an outdoor venue in the mountains of Baabdath, Lebanon. This stunning venue offers breathtaking views and modern amenities.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.mcDDZkB4FOO6fHy-latrPAHaHa?pid=Api" alt="Venue photo 1" class="w-full rounded shadow">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.QIUajzugTx5qVZtGdBktCAHaHa?pid=Api" alt="Venue photo 2" class="w-full rounded shadow">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.I0a1d29nP6ELj91s-Aa6jwHaHa?pid=Api" alt="Venue photo 3" class="w-full rounded shadow">
+      </div>
+      <ul class="mb-8 text-left list-disc list-inside">
+        <li>Valet Parking</li>
+        <li>Bridal Room</li>
+        <li>Reception & Ceremonial Grounds</li>
+        <li>Sound and lighting system</li>
+        <li>On-site staff and cleaning services</li>
+      </ul>
+      <div class="w-full h-96">
+        <iframe class="w-full h-full rounded" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=blanchic%20baabdath&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
       </div>
     </div>
-  </div>
+  </section>
 
-  <script>
-    let currentIndex = 0;
-    let files = [];
+  <section id="photos" class="py-24 px-4 bg-[var(--olive)] text-white">
+    <h2 class="text-4xl text-center mb-6">Upload & View Photos</h2>
+    
+    <div class="mt-8 max-w-4xl mx-auto text-center">
+      <a href="templates/gallery.html" class="underline text-white text-lg hover:text-[var(--linen)]">View Uploaded Photos & Videos →</a>
+    </div>
+  </section>
 
-    const modal = document.getElementById('modal');
-    const modalContent = document.getElementById('modalContent');
-    const downloadLink = document.getElementById('downloadLink');
-    const commentsDiv = document.getElementById('comments');
+  <section id="registry" class="py-24 px-4 bg-[var(--linen)] text-[var(--forest)]">
+    <h2 class="text-4xl text-center mb-6">Gift Registry</h2>
+    <p class="text-center italic">Under Construction...</p>
+  </section>
 
-    function openModal(index) {
-      currentIndex = index;
-      const file = files[currentIndex];
-      const ext = file.split('.').pop().toLowerCase();
-      modalContent.innerHTML = '';
-      if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) {
-        modalContent.innerHTML = `<img src="/uploads/${file}" alt="Image">`;
-      } else {
-        modalContent.innerHTML = `<video controls src="/uploads/${file}"></video>`;
-      }
-      downloadLink.href = `/uploads/${file}`;
-      loadComments();
-      modal.classList.remove('hidden');
-    }
+  <section id="contact" class="py-24 px-4 bg-[var(--olive)] text-white">
+    <h2 class="text-4xl text-center mb-6">Contact Us</h2>
+    
+    <div class="text-center space-y-2">
+      <p>Cynthia Youwakim - +961 81687547</p>
+      <p>Samer Dib - +961 70821225</p>
+      <div class="h-4"></div>
+      <p>Joelle Salamoun - +44 7923812581</p>
+    </div>
 
-    function closeModal() {
-      modal.classList.add('hidden');
-    }
+  </section>
 
-    function submitComment() {
-      const name = document.getElementById('commenter').value.trim();
-      const comment = document.getElementById('commentText').value.trim();
-      if (!name || !comment) return;
-      const file = files[currentIndex];
-      fetch(`/comments/${encodeURIComponent(file)}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, comment })
-      }).then(() => {
-        document.getElementById('commenter').value = '';
-        document.getElementById('commentText').value = '';
-        loadComments();
-      });
-    }
-
-    function loadComments() {
-      const file = files[currentIndex];
-      commentsDiv.innerHTML = '';
-      fetch(`/comments/${encodeURIComponent(file)}`)
-        .then(res => res.json())
-        .then(comments => {
-          comments.forEach(c => {
-            const div = document.createElement('div');
-            div.innerHTML = `<span class="comment-name">${c.name}</span>: ${c.comment}`;
-            commentsDiv.appendChild(div);
-          });
-        });
-    }
-
-    document.getElementById('prev').onclick = () => {
-      currentIndex = (currentIndex - 1 + files.length) % files.length;
-      openModal(currentIndex);
-    };
-    document.getElementById('next').onclick = () => {
-      currentIndex = (currentIndex + 1) % files.length;
-      openModal(currentIndex);
-    };
-
-    document.getElementById('closeModal').onclick = closeModal;
-    modal.onclick = (e) => {
-      if (e.target === modal) closeModal();
-    };
-
-    fetch('/list')
-      .then(res => res.json())
-      .then(fileList => {
-        files = fileList;
-        const gallery = document.getElementById('gallery');
-        files.forEach((file, index) => {
-          const ext = file.split('.').pop().toLowerCase();
-          const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(ext);
-          const isVideo = ['mp4', 'mov', 'avi', 'mkv'].includes(ext);
-          const container = document.createElement('div');
-          container.className = 'bg-white rounded shadow-lg p-2 text-center cursor-pointer';
-          container.onclick = () => openModal(index);
-
-          if (isImage) {
-            container.innerHTML = `<img src='/uploads/${file}' class='w-full h-60 object-cover rounded border border-[var(--pine)]' alt='Uploaded image'>`;
-          } else if (isVideo) {
-            container.innerHTML = `<video class='w-full h-60 object-cover rounded border border-[var(--pine)]'><source src='/uploads/${file}' type='video/${ext}'></video>`;
-          }
-
-          gallery.appendChild(container);
-        });
-      })
-      .catch(error => {
-        document.getElementById('gallery').innerHTML = '<p class="text-center text-red-500">Failed to load gallery. Make sure the Flask server is running.</p>';
-        console.error('Error loading files:', error);
-      });
-  </script>
+  <section id="seating" class="py-24 px-4 bg-[var(--linen)] text-[var(--forest)]">
+    <h2 class="text-4xl text-center mb-6">Table Seating</h2>
+    <p class="text-center italic">Seating arrangement will be shared as the date approaches.</p>
+  </section>
 </body>
 </html>
