@@ -9,7 +9,7 @@
   <style>
   @font-face {
     font-family: 'LetterEditorial';
-    src: url("/static/fonts/LetgterEditorial.ttf") format("truetype");
+    src: url("/static/fonts/LetterEditorial.ttf") format("truetype");
     font-display: swap;
   }
 
@@ -253,6 +253,35 @@
       });
     });
 </script>
+
+
+<div id="modal" class="modal hidden">
+  <div class="modal-controls">
+    <button id="prev"><</button>
+    <button id="next">></button>
+  </div>
+  <div class="modal-toolbar">
+    <a id="downloadLink" href="#" download title="Download">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+      </svg>
+    </a>
+    <button id="closeModal" title="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div id="modalContent"></div>
+  <div class="comment-section">
+    <div id="comments" class="comments-display"></div>
+    <div class="comment-form">
+      <input type="text" id="commenter" placeholder="Your name" />
+      <textarea id="commentText" placeholder="Leave a comment..."></textarea>
+      <button onclick="submitCommentModal()" title="Submit">💬</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
