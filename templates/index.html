@@ -8,6 +8,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
   @font-face {
+    font-family: 'LetterEditorial';
+    src: url("/static/fonts/LetterEditorial.ttf") format("truetype");
+    font-display: swap;
+  }
+
+  @font-face {
     font-family: 'Rustic Roadway';
     src: url("/static/fonts/LetterEditorial.ttf") format("opentype");
     font-display: swap;
@@ -34,7 +40,14 @@
       background-color: var(--linen);
       color: var(--pine);
     }
-  </style>
+  
+    .font-cursive {
+      font-family: 'Great Vibes', cursive;
+    }
+    .font-body {
+      font-family: 'LetterEditorial', serif;
+    }
+</style>
 </head>
 
 <body class="bg-[var(--linen)] text-[var(--forest)]">
@@ -42,7 +55,7 @@
   
 <nav class="fixed top-0 w-full bg-[var(--pine)] text-white shadow z-50">
   <div class="container mx-auto flex justify-between items-center p-4">
-    <span class="text-xl font-bold">Samer & Cynthia</span>
+    <span class="text-xl font-bold font-cursive">Samer & Cynthia</span>
     <button class="md:hidden" id="nav-toggle">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
@@ -77,14 +90,17 @@
   <section id="home" class="relative h-screen w-full pt-24">
     <img src="hero photo.jpg" alt="Wedding banner" class="absolute top-0 left-0 w-full h-full object-cover z-0">
     
-    <div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-[var(--linen)] px-4 pt-32 md:pt-48">
-      <h1 class="text-5xl mb-4">Samer Dib</h1>
-      <h1 class="text-5xl mb-4">&</h1>
-      <h1 class="text-5xl mb-8">Cynthia Youwakim</h1>
-      <p class="text-2xl mb-8">Are Getting Married!</p>
-      <p class="text-xl">Saturday, June 20, 2026</p>
-      <p class="text-xl">Blanchic - Baabdath, Metn</p>
-    </div>
+    
+<div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-[var(--linen)] px-4 pt-32 md:pt-48">
+  <h1 class="text-5xl mb-2 font-cursive">Samer Dib</h1>
+  <h1 class="text-5xl mb-2 font-cursive">&</h1>
+  <h1 class="text-5xl mb-6 font-cursive">Cynthia Youwakim</h1>
+  <p class="text-2xl mb-4">Are Getting Married!</p>
+  <div class="h-6"></div>
+  <p class="text-xl">Saturday, June 20, 2026</p>
+  <p class="text-xl">Blanchic - Baabdath, Metn</p>
+</div>
+
 
       <h1 class="text-5xl mb-4">Samer Dib & Cynthia Youwakim</h1>
       <p class="text-2xl mb-2">Are Getting Married!</p>
