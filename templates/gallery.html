@@ -9,124 +9,31 @@
   <style>
   @font-face {
     font-family: 'LetterEditorial';
-    src: url("/static/fonts/LetterEditorial.ttf") format("truetype");
+    src: url("/static/fonts/mathilde.otf") format("truetype");
     font-display: swap;
   }
 
+  @font-face {
+    font-family: 'Rustic Roadway';
+    src: url("/static/fonts/mathilde.otf") format("opentype");
+    font-display: swap;
+  }
+
+
     :root {
-      --forest: #B57B66;
-      --pine: #A1A79E;
-      --olive: #68756D;
-      --stone: #DECEBF;
-      --linen: #F4F3F1;
+      --charcoal: #36454F;
+      --pine: #222021;
+      --black: #000000;
+      --slate: #26282A;
+      --white: #FFFFFF;
+      --lgrey: #D3D3D3;
     }
     body {
-      font-family: 'LetterEditorial', serif;
-      background-color: var(--linen);
-      color: var(--forest);
+      font-family: 'Rustic Roadway', cursive;
+      background-color: var(--white);
+      color: var(--charcoal);
     }
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
-      flex-direction: column;
-    }
-    .modal img, .modal video {
-      max-height: 80vh;
-      max-width: 90vw;
-      border: 4px solid white;
-      border-radius: 0.5rem;
-    }
-    .modal-controls {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      padding: 0 1rem;
-    }
-    .modal-controls button {
-      background: white;
-      border: none;
-      font-size: 2rem;
-      padding: 0 1rem;
-      cursor: pointer;
-    }
-    .modal-toolbar {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 1rem;
-    }
-    .modal-toolbar img {
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-      filter: invert(1);
-    }
-    .comment-section {
-      margin-top: 1rem;
-      width: 90%;
-      max-width: 600px;
-      background: white;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      color: black;
-    }
-    .comment-form {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      margin-top: 0.5rem;
-    }
-    .comment-form input, .comment-form textarea {
-      height: 38px;
-      padding: 0.5rem;
-      border: 1px solid var(--pine);
-      border-radius: 0.25rem;
-      font-size: 1rem;
-      font-family: sans-serif;
-    }
-    .comment-form input {
-      width: 30%;
-    }
-    .comment-form textarea {
-      width: 60%;
-      resize: none;
-      height: 38px;
-    }
-    .comment-form button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    .comment-form button img {
-      width: 28px;
-      height: 28px;
-    }
-    .comments-display {
-      font-size: 1rem;
-  font-family: 'LetterEditorial', serif;
-      color: black;
-      text-align: left;
-      margin-bottom: 0.5rem;
-    }
-    .comments-display div {
-      margin-bottom: 0.25rem;
-    }
-    .comment-name {
-      font-weight: bold;
-    }
-  </style>
+</style>
 </head>
 <body class="min-h-screen px-6 py-12">
   <h1 class="text-5xl text-center mb-16">Wedding Gallery</h1>
