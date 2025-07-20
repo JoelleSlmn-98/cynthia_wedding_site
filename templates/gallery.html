@@ -4,19 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery | Cynthia & Samer</title>
-  <script src="https://cdn.tailwindcss.com">
-if (isAdmin) {
-  document.querySelectorAll(".delete-btn").forEach(btn => btn.classList.remove("hidden"));
-}
-</script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-  @font-face {
-    font-family: 'LetterEditorial';
-    src: url("/static/fonts/LetterEditorial.ttf") format("truetype");
-    font-display: swap;
-  }
-
     :root {
       --forest: #B57B66;
       --pine: #A1A79E;
@@ -174,143 +164,100 @@ if (isAdmin) {
     </div>
   </div>
 
-  <script>
-    let currentIndex = 0;
-    let files = [];
-
-    const modal = document.getElementById('modal');
-    const modalContent = document.getElementById('modalContent');
-    const downloadLink = document.getElementById('downloadLink');
-    const commentsDiv = document.getElementById('comments');
-
-    function openModal(index) {
-      currentIndex = index;
-      const file = files[currentIndex];
-      const ext = file.split('.').pop().toLowerCase();
-      modalContent.innerHTML = '';
-      if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) {
-        modalContent.innerHTML = `<img src="/uploads/${file}" alt="Image">`;
-      } else {
-        modalContent.innerHTML = `<video controls src="/uploads/${file}"></video>`;
-      }
-      downloadLink.href = `/uploads/${file}`;
-      loadComments();
-      modal.classList.remove('hidden');
-    }
-
-    function closeModal() {
-      modal.classList.add('hidden');
-    }
-
-    function submitComment() {
-      const name = document.getElementById('commenter').value.trim();
-      const comment = document.getElementById('commentText').value.trim();
-      if (!name || !comment) return;
-      const file = files[currentIndex];
-      fetch(`/comments/${encodeURIComponent(file)}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, comment })
-      }).then(() => {
-        document.getElementById('commenter').value = '';
-        document.getElementById('commentText').value = '';
-        loadComments();
-      });
-    }
-
-    function loadComments() {
-      const file = files[currentIndex];
-      commentsDiv.innerHTML = '';
-      fetch(`/comments/${encodeURIComponent(file)}`)
-        .then(res => res.json())
-        .then(comments => {
-          comments.forEach(c => {
-            const div = document.createElement('div');
-            div.innerHTML = `<span class="comment-name">${c.name}</span>: ${c.comment}`;
-            commentsDiv.appendChild(div);
-          });
-        });
-    }
-
-    document.getElementById('prev').onclick = () => {
-      currentIndex = (currentIndex - 1 + files.length) % files.length;
-      openModal(currentIndex);
-    };
-    document.getElementById('next').onclick = () => {
-      currentIndex = (currentIndex + 1) % files.length;
-      openModal(currentIndex);
-    };
-
-    document.getElementById('closeModal').onclick = closeModal;
-    modal.onclick = (e) => {
-      if (e.target === modal) closeModal();
-    };
-
-    fetch('/list')
-      .then(res => res.json())
-      .then(fileList => {
-        files = fileList;
-        const gallery = document.getElementById('gallery');
-        files.forEach((file, index) => {
-          const ext = file.split('.').pop().toLowerCase();
-          const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(ext);
-          const isVideo = ['mp4', 'mov', 'avi', 'mkv'].includes(ext);
-          const container = document.createElement('div');
-          container.className = 'bg-white rounded shadow-lg p-2 text-center cursor-pointer';
-          container.onclick = () => openModal(index);
-
-          if (isImage) {
-            
-    container.innerHTML = `
-      <div class='relative bg-white rounded shadow p-2 flex flex-col items-center'>
-        ${isImage ? 
-          `<img src='/uploads/${file}' class='w-full h-60 object-cover rounded border border-[var(--pine)] mb-2' alt='Uploaded image'>` :
-          `<video class='w-full h-60 object-cover rounded border border-[var(--pine)] mb-2' controls><source src='/uploads/${file}' type='video/${ext}'></video>`}
-        <div class="w-full text-left text-sm text-black p-2 bg-[var(--linen)] border border-[var(--pine)] rounded">
-          <div id="comments-${index}" class="comments-display space-y-1 mb-2"></div>
-          <div class="comment-form flex gap-2">
-            <input type="text" placeholder="Your name" class="flex-1 text-sm p-1 border rounded name-input" />
-            <input type="text" placeholder="Comment..." class="flex-[2] text-sm p-1 border rounded comment-input" />
-            <button class="submit-comment" data-index="${index}">💬</button>
-          </div>
-        </div>
-        <button class="delete-btn mt-2 text-xs text-red-500 underline hidden" data-file="${file}">Delete</button>
-      </div>
-    `;
-    
-          } else if (isVideo) {
-            
-    container.innerHTML = `
-      <div class='relative bg-white rounded shadow p-2 flex flex-col items-center'>
-        ${isImage ? 
-          `<img src='/uploads/${file}' class='w-full h-60 object-cover rounded border border-[var(--pine)] mb-2' alt='Uploaded image'>` :
-          `<video class='w-full h-60 object-cover rounded border border-[var(--pine)] mb-2' controls><source src='/uploads/${file}' type='video/${ext}'></video>`}
-        <div class="w-full text-left text-sm text-black p-2 bg-[var(--linen)] border border-[var(--pine)] rounded">
-          <div id="comments-${index}" class="comments-display space-y-1 mb-2"></div>
-          <div class="comment-form flex gap-2">
-            <input type="text" placeholder="Your name" class="flex-1 text-sm p-1 border rounded name-input" />
-            <input type="text" placeholder="Comment..." class="flex-[2] text-sm p-1 border rounded comment-input" />
-            <button class="submit-comment" data-index="${index}">💬</button>
-          </div>
-        </div>
-        <button class="delete-btn mt-2 text-xs text-red-500 underline hidden" data-file="${file}">Delete</button>
-      </div>
-    `;
-    
-          }
-
-          gallery.appendChild(container);
-        });
-      })
-      .catch(error => {
-        document.getElementById('gallery').innerHTML = '<p class="text-center text-red-500">Failed to load gallery. Make sure the Flask server is running.</p>';
-        console.error('Error loading files:', error);
-      });
   
-const isAdmin = prompt("Enter admin password:") === "your_password_here";
-if (isAdmin) {
-  document.querySelectorAll(".delete-btn").forEach(btn => btn.classList.remove("hidden"));
-}
+<script>
+  let files = [];
+  const isAdmin = new URLSearchParams(window.location.search).get('admin') === 'true';
+
+  function loadComments(file, container) {
+    fetch(`/comments/${encodeURIComponent(file)}`)
+      .then(res => res.json())
+      .then(comments => {
+        container.innerHTML = '';
+        comments.forEach(c => {
+          const div = document.createElement('div');
+          div.innerHTML = `<span class='font-bold'>${c.name}</span>: ${c.comment}`;
+          container.appendChild(div);
+        });
+      });
+  }
+
+  function submitComment(file, name, comment, reloadFn) {
+    fetch(`/comments/${encodeURIComponent(file)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, comment })
+    }).then(() => {
+      reloadFn();
+    });
+  }
+
+  function createCard(file, index) {
+    const ext = file.split('.').pop().toLowerCase();
+    const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(ext);
+    const isVideo = ['mp4', 'mov', 'avi', 'mkv'].includes(ext);
+
+    const card = document.createElement('div');
+    card.className = 'bg-white rounded shadow p-2 text-center';
+
+    const media = document.createElement(isImage ? 'img' : 'video');
+    media.src = `/uploads/${file}`;
+    media.className = 'w-full h-60 object-cover rounded border border-[var(--pine)] mb-2';
+    if (isVideo) media.controls = true;
+    card.appendChild(media);
+
+    const commentsDiv = document.createElement('div');
+    commentsDiv.className = 'comments-display text-left text-sm text-black p-2 bg-[var(--linen)] border border-[var(--pine)] rounded mb-2';
+    card.appendChild(commentsDiv);
+    loadComments(file, commentsDiv);
+
+    const form = document.createElement('div');
+    form.className = 'comment-form flex gap-2';
+    const nameInput = document.createElement('input');
+    nameInput.placeholder = 'Name';
+    nameInput.className = 'flex-1 text-sm p-1 border rounded';
+    const commentInput = document.createElement('input');
+    commentInput.placeholder = 'Comment...';
+    commentInput.className = 'flex-[2] text-sm p-1 border rounded';
+    const button = document.createElement('button');
+    button.innerText = '💬';
+    button.onclick = () => {
+      const name = nameInput.value.trim();
+      const comment = commentInput.value.trim();
+      if (name && comment) {
+        submitComment(file, name, comment, () => loadComments(file, commentsDiv));
+        nameInput.value = '';
+        commentInput.value = '';
+      }
+    };
+    form.appendChild(nameInput);
+    form.appendChild(commentInput);
+    form.appendChild(button);
+    card.appendChild(form);
+
+    if (isAdmin) {
+      const del = document.createElement('button');
+      del.className = 'text-xs text-red-500 underline mt-1';
+      del.innerText = 'Delete';
+      del.onclick = () => {
+        fetch(`/delete/${encodeURIComponent(file)}?password=your_password_here`, {
+          method: 'DELETE'
+        }).then(() => card.remove());
+      };
+      card.appendChild(del);
+    }
+
+    return card;
+  }
+
+  fetch('/list')
+    .then(res => res.json())
+    .then(fileList => {
+      files = fileList;
+      const gallery = document.getElementById('gallery');
+      files.forEach((file, i) => gallery.appendChild(createCard(file, i)));
+    });
 </script>
+
 </body>
 </html>
