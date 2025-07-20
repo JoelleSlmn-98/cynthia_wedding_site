@@ -15,7 +15,7 @@
       --linen: #F4F3F1;
     }
     body {
-      font-family: 'LetterEditorial', serif;
+      font-family: 'Great Vibes', cursive;
       background-color: var(--linen);
       color: var(--forest);
     }
@@ -122,13 +122,16 @@
   </style>
 </head>
 <body class="min-h-screen px-6 py-12">
-  <h1 class="text-5xl text-center mb-6">Wedding Gallery</h1><div class="text-center mb-8"><button id="downloadAll" class="bg-[var(--pine)] text-[var(--linen)] px-4 py-2 rounded hover:bg-[var(--olive)]">Download All</button></div>
+  <h1 class="text-5xl text-center mb-16">Wedding Gallery</h1>
   <div class="text-center mb-10">
     <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data" class="inline-block">
       <input type="file" name="file" accept="image/*,video/*" class="mb-4 text-black" multiple>
       <br>
       <button type="submit" class="bg-[var(--pine)] text-[var(--linen)] px-6 py-2 rounded hover:bg-[var(--olive)]">Upload</button>
     </form>
+<div class="mt-4">
+  <button id="downloadAll" class="bg-[var(--pine)] text-[var(--linen)] px-6 py-2 rounded hover:bg-[var(--olive)]">Download All</button>
+</div>
   </div>
   <div id="gallery" class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"></div>
 
@@ -168,7 +171,6 @@
 <script>
   let currentIndex = 0;
   let files = [];
-  const isAdmin = new URLSearchParams(window.location.search).get('admin') === 'true';
 
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('modalContent');
@@ -234,18 +236,9 @@
   document.getElementById('closeModal').onclick = closeModal;
   modal.onclick = (e) => { if (e.target === modal) closeModal(); };
 
-  function downloadAll() {
-    files.forEach(file => {
-      const a = document.createElement('a');
-      a.href = `/uploads/${file}`;
-      a.download = file;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    });
-  }
-
-  document.getElementById('downloadAll').onclick = downloadAll;
+  document.getElementById('downloadAll').onclick = () => {
+    window.location.href = '/download-all';
+  };
 
   document.getElementById('uploadForm').onsubmit = function(e) {
     e.preventDefault();
@@ -324,17 +317,22 @@
         form.appendChild(btn);
         card.appendChild(form);
 
-        if (isAdmin) {
-          const del = document.createElement('button');
-          del.className = 'text-xs text-red-500 underline mt-1';
-          del.innerText = 'Delete';
-          del.onclick = () => {
-            fetch(`/delete/${encodeURIComponent(file)}?password=yowcycy`, {
-              method: 'DELETE'
-            }).then(() => card.remove());
-          };
-          card.appendChild(del);
-        }
+        const del = document.createElement('button');
+        del.className = 'text-xs text-red-500 underline mt-1';
+        del.innerText = 'Delete';
+        del.onclick = () => {
+          const password = prompt("Enter admin password to delete this file:");
+          if (!password) return;
+          fetch(`/delete/${encodeURIComponent(file)}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password })
+          }).then(res => {
+            if (res.ok) card.remove();
+            else alert("Unauthorized or failed to delete.");
+          });
+        };
+        card.appendChild(del);
 
         gallery.appendChild(card);
       });
