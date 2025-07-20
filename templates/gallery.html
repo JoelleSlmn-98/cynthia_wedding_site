@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery | Cynthia & Samer</title>
+  <title>Gallery | Samer & Cynthia</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
   @font-face {
     font-family: 'LetterEditorial';
-    src: url("/static/fonts/mathilde.otf") format("truetype");
+    src: url("/static/fonts/LetgterEditorial.ttf") format("truetype");
     font-display: swap;
   }
 
@@ -42,9 +42,9 @@
 <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-6">
   <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data" class="flex flex-col md:flex-row items-center gap-2">
     <input type="file" name="file" accept="image/*,video/*" class="text-black" multiple>
-    <button type="submit" class="bg-[var(--pine)] text-[var(--linen)] px-6 py-2 rounded hover:bg-[var(--olive)]">Upload</button>
+    <button type="submit" class="bg-[var(--charcoal)] text-[var(--white)] px-6 py-2 rounded hover:bg-[var(--lgrey)] text-[var(--charcoal)]">Upload</button>
   </form>
-  <button id="downloadAll" class="bg-[var(--pine)] text-[var(--linen)] px-6 py-2 rounded hover:bg-[var(--olive)]">Download All</button>
+  <button id="downloadAll" class="bg-[var(--charcoal)] text-[var(--white)] px-6 py-2 rounded hover:bg-[var(--lgrey)] text-[var(--charcoal)]">Download All</button>
 </div>
 
   </div>
@@ -52,8 +52,8 @@
 
   <div id="modal" class="modal hidden">
     <div class="modal-controls">
-      <button id="prev">⟵</button>
-      <button id="next">⟶</button>
+      <button id="prev"><</button>
+      <button id="next">></button>
     </div>
     <div class="modal-toolbar">
       <a id="downloadLink" href="#" download class="text-white hover:text-gray-300" title="Download">
@@ -73,7 +73,7 @@
       <div class="comment-form">
         <input type="text" id="commenter" placeholder="Your name" />
         <textarea id="commentText" placeholder="Leave a comment..."></textarea>
-        <button onclick="submitComment()" title="Submit" class="text-[var(--pine)] hover:text-[var(--olive)]">
+        <button onclick="submitComment()" title="Submit" class="text-[var(--charcoal)] hover:text-[var(--lgrey)]">
   <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
   </svg>
@@ -191,14 +191,14 @@
 
         const media = document.createElement(isImage ? 'img' : 'video');
         media.src = `/uploads/${file}`;
-        media.className = 'w-full h-60 object-cover rounded border border-[var(--pine)] mb-2';
+        media.className = 'w-full h-60 object-cover rounded border border-[var(--charcoal)] mb-2';
         if (isVideo) media.controls = true;
         else media.onclick = () => openModal(index);
 
         card.appendChild(media);
 
         const commentsDiv = document.createElement('div');
-        commentsDiv.className = 'comments-display text-left text-sm text-black p-2 bg-[var(--linen)] border border-[var(--pine)] rounded mb-2';
+        commentsDiv.className = 'comments-display text-left text-sm text-black p-2 bg-[var(--white)] border border-[var(--charcoal)] rounded mb-2';
         card.appendChild(commentsDiv);
         loadInlineComments(file, commentsDiv);
 
@@ -233,7 +233,7 @@
         card.appendChild(form);
 
         const del = document.createElement('button');
-        del.className = 'text-xs text-red-500 underline mt-1';
+        del.className = 'text-sm text-red-500 underline mt-1';
         del.innerText = 'Delete';
         del.onclick = () => {
           const password = prompt("Enter admin password to delete this file:");
