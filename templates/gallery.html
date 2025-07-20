@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery | Samer & Cynthia</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery | Samer &amp; Cynthia</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" rel="stylesheet"/>
+<style>
   @font-face {
     font-family: 'LetterEditorial';
     src: url("/static/fonts/LetterEditorial.ttf") format("truetype");
@@ -34,55 +35,170 @@
       color: var(--charcoal);
     }
 </style>
-</head>
+<style>
+  @font-face {
+    font-family: 'LetterEditorial';
+    src: url("/static/fonts/LetterEditorial.ttf") format("truetype");
+    font-display: swap;
+  }
+
+    :root {
+      --forest: #B57B66;
+      --pine: #A1A79E;
+      --olive: #68756D;
+      --stone: #DECEBF;
+      --linen: #F4F3F1;
+    }
+    body {
+      font-family: 'LetterEditorial', serif;
+      background-color: var(--linen);
+      color: var(--forest);
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      flex-direction: column;
+    }
+    .modal img, .modal video {
+      max-height: 80vh;
+      max-width: 90vw;
+      border: 4px solid white;
+      border-radius: 0.5rem;
+    }
+    .modal-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 1rem;
+    }
+    .modal-controls button {
+      background: white;
+      border: none;
+      font-size: 2rem;
+      padding: 0 1rem;
+      cursor: pointer;
+    }
+    .modal-toolbar {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .modal-toolbar img {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      filter: invert(1);
+    }
+    .comment-section {
+      margin-top: 1rem;
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      color: black;
+    }
+    .comment-form {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+    .comment-form input, .comment-form textarea {
+      height: 38px;
+      padding: 0.5rem;
+      border: 1px solid var(--pine);
+      border-radius: 0.25rem;
+      font-size: 1rem;
+      font-family: sans-serif;
+    }
+    .comment-form input {
+      width: 30%;
+    }
+    .comment-form textarea {
+      width: 60%;
+      resize: none;
+      height: 38px;
+    }
+    .comment-form button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .comment-form button img {
+      width: 28px;
+      height: 28px;
+    }
+    .comments-display {
+      font-size: 1rem;
+  font-family: 'LetterEditorial', serif;
+      color: black;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+    .comments-display div {
+      margin-bottom: 0.25rem;
+    }
+    .comment-name {
+      font-weight: bold;
+    }
+  </style></head>
 <body class="min-h-screen px-6 py-12">
-  <h1 class="text-5xl text-center mb-16">Wedding Gallery</h1>
-  <div class="text-center mb-10">
-    
+<h1 class="text-5xl text-center mb-16">Wedding Gallery</h1>
+<div class="text-center mb-10">
 <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-6">
-  <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data" class="flex flex-col md:flex-row items-center gap-2">
-    <input type="file" name="file" accept="image/*,video/*" class="text-black" multiple>
-    <button type="submit" class="bg-[var(--charcoal)] text-[var(--white)] px-6 py-2 rounded hover:bg-[var(--lgrey)] text-[var(--charcoal)]">Upload</button>
-  </form>
-  <button id="downloadAll" class="bg-[var(--charcoal)] text-[var(--white)] px-6 py-2 rounded hover:bg-[var(--lgrey)] text-[var(--charcoal)]">Download All</button>
+<form action="/upload" class="flex flex-col md:flex-row items-center gap-2" enctype="multipart/form-data" id="uploadForm" method="POST">
+<input accept="image/*,video/*" class="text-black" multiple="" name="file" type="file"/>
+<button class="bg-[var(--charcoal)] text-[var(--white)] px-6 py-2 rounded hover:bg-[var(--lgrey)] text-[var(--charcoal)]" type="submit">Upload</button>
+</form>
+<button class="bg-[var(--charcoal)] text-[var(--white)] px-6 py-2 rounded hover:bg-[var(--lgrey)] text-[var(--charcoal)]" id="downloadAll">Download All</button>
 </div>
-
-  </div>
-  <div id="gallery" class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"></div>
-
-  <div id="modal" class="modal hidden">
-    <div class="modal-controls">
-      <button id="prev"><</button>
-      <button id="next">></button>
-    </div>
-    <div class="modal-toolbar">
-      <a id="downloadLink" href="#" download class="text-white hover:text-gray-300" title="Download">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-  </svg>
+</div>
+<div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4" id="gallery"></div>
+<div class="modal hidden" id="modal">
+<div class="modal-controls">
+<button id="prev">&lt;</button>
+<button id="next">&gt;</button>
+</div>
+<div class="modal-toolbar">
+<a class="text-white hover:text-gray-300" download="" href="#" id="downloadLink" title="Download">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
 </a>
-      <button id="closeModal" title="Close" class="text-white hover:text-gray-300">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-  </svg>
+<button class="text-white hover:text-gray-300" id="closeModal" title="Close">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
 </button>
-    </div>
-    <div id="modalContent"></div>
-    <div class="comment-section">
-      <div id="comments" class="comments-display"></div>
-      <div class="comment-form">
-        <input type="text" id="commenter" placeholder="Your name" />
-        <textarea id="commentText" placeholder="Leave a comment..."></textarea>
-        <button onclick="submitComment()" title="Submit" class="text-[var(--charcoal)] hover:text-[var(--lgrey)]">
-  <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-  </svg>
+</div>
+<div id="modalContent"></div>
+<div class="comment-section">
+<div class="comments-display" id="comments"></div>
+<div class="comment-form">
+<input id="commenter" placeholder="Your name" type="text">
+<textarea id="commentText" placeholder="Leave a comment..."></textarea>
+<button class="text-[var(--charcoal)] hover:text-[var(--lgrey)]" onclick="submitComment()" title="Submit">
+<svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
 </button>
-      </div>
-    </div>
-  </div>
-
-  
+</input></div>
+</div>
+</div>
 <script>
   let currentIndex = 0;
   let files = [];
@@ -253,35 +369,205 @@
       });
     });
 </script>
-
-
-<div id="modal" class="modal hidden">
-  <div class="modal-controls">
-    <button id="prev"><</button>
-    <button id="next">></button>
-  </div>
-  <div class="modal-toolbar">
-    <a id="downloadLink" href="#" download title="Download">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-      </svg>
-    </a>
-    <button id="closeModal" title="Close">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-  </div>
-  <div id="modalContent"></div>
-  <div class="comment-section">
-    <div id="comments" class="comments-display"></div>
-    <div class="comment-form">
-      <input type="text" id="commenter" placeholder="Your name" />
-      <textarea id="commentText" placeholder="Leave a comment..."></textarea>
-      <button onclick="submitCommentModal()" title="Submit">💬</button>
-    </div>
-  </div>
+<div class="modal hidden" id="modal">
+<div class="modal-controls">
+<button id="prev">⟵</button>
+<button id="next">⟶</button>
 </div>
+<div class="modal-toolbar">
+<a class="text-white hover:text-gray-300" download="" href="#" id="downloadLink" title="Download">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+<button class="text-white hover:text-gray-300" id="closeModal" title="Close">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div id="modalContent"></div>
+<div class="comment-section">
+<div class="comments-display" id="comments"></div>
+<div class="comment-form">
+<input id="commenter" placeholder="Your name" type="text"/>
+<textarea id="commentText" placeholder="Leave a comment..."></textarea>
+<button class="text-[var(--pine)] hover:text-[var(--olive)]" onclick="submitComment()" title="Submit">
+<svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div><script src="https://cdn.tailwindcss.com"></script>
+<script>
+  let currentIndex = 0;
+  let files = [];
 
-</body>
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modalContent');
+  const downloadLink = document.getElementById('downloadLink');
+  const commentsDiv = document.getElementById('comments');
+
+  function openModal(index) {
+    currentIndex = index;
+    const file = files[index];
+    const ext = file.split('.').pop().toLowerCase();
+    modalContent.innerHTML = '';
+    if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) {
+      modalContent.innerHTML = `<img src="/uploads/${file}" alt="Image">`;
+    } else {
+      modalContent.innerHTML = `<video controls src="/uploads/${file}"></video>`;
+    }
+    downloadLink.href = `/uploads/${file}`;
+    loadCommentsModal(file);
+    modal.classList.remove('hidden');
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+  }
+
+  function loadCommentsModal(file) {
+    commentsDiv.innerHTML = '';
+    fetch(`/comments/${encodeURIComponent(file)}`)
+      .then(res => res.json())
+      .then(comments => {
+        comments.forEach(c => {
+          const div = document.createElement('div');
+          div.innerHTML = `<span class="font-bold">${c.name}</span>: ${c.comment}`;
+          commentsDiv.appendChild(div);
+        });
+      });
+  }
+
+  function submitCommentModal() {
+    const name = document.getElementById('commenter').value.trim();
+    const comment = document.getElementById('commentText').value.trim();
+    if (!name || !comment) return;
+    const file = files[currentIndex];
+    fetch(`/comments/${encodeURIComponent(file)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, comment })
+    }).then(() => {
+      document.getElementById('commenter').value = '';
+      document.getElementById('commentText').value = '';
+      loadCommentsModal(file);
+    });
+  }
+
+  document.getElementById('prev').onclick = () => {
+    currentIndex = (currentIndex - 1 + files.length) % files.length;
+    openModal(currentIndex);
+  };
+  document.getElementById('next').onclick = () => {
+    currentIndex = (currentIndex + 1) % files.length;
+    openModal(currentIndex);
+  };
+  document.getElementById('closeModal').onclick = closeModal;
+  modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+
+  document.getElementById('downloadAll').onclick = () => {
+    window.location.href = '/download-all';
+  };
+
+  document.getElementById('uploadForm').onsubmit = function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch('/upload', {
+      method: 'POST',
+      body: formData
+    }).then(() => window.location.reload());
+  };
+
+  function loadInlineComments(file, container) {
+    fetch(`/comments/${encodeURIComponent(file)}`)
+      .then(res => res.json())
+      .then(comments => {
+        container.innerHTML = '';
+        comments.forEach(c => {
+          const div = document.createElement('div');
+          div.innerHTML = `<span class='font-bold'>${c.name}</span>: ${c.comment}`;
+          container.appendChild(div);
+        });
+      });
+  }
+
+  fetch('/list')
+    .then(res => res.json())
+    .then(fileList => {
+      files = fileList;
+      const gallery = document.getElementById('gallery');
+      files.forEach((file, index) => {
+        const ext = file.split('.').pop().toLowerCase();
+        const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(ext);
+        const isVideo = ['mp4', 'mov', 'avi', 'mkv'].includes(ext);
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded shadow p-2 text-center';
+
+        const media = document.createElement(isImage ? 'img' : 'video');
+        media.src = `/uploads/${file}`;
+        media.className = 'w-full h-60 object-cover rounded border border-[var(--pine)] mb-2';
+        if (isVideo) media.controls = true;
+        else media.onclick = () => openModal(index);
+
+        card.appendChild(media);
+
+        const commentsDiv = document.createElement('div');
+        commentsDiv.className = 'comments-display text-left text-sm text-black p-2 bg-[var(--linen)] border border-[var(--pine)] rounded mb-2';
+        card.appendChild(commentsDiv);
+        loadInlineComments(file, commentsDiv);
+
+        const form = document.createElement('div');
+        form.className = 'comment-form flex gap-2';
+        const nameInput = document.createElement('input');
+        nameInput.placeholder = 'Name';
+        nameInput.className = 'flex-1 text-sm p-1 border rounded';
+        const commentInput = document.createElement('input');
+        commentInput.placeholder = 'Comment...';
+        commentInput.className = 'flex-[2] text-sm p-1 border rounded';
+        const btn = document.createElement('button');
+        btn.innerText = '💬';
+        btn.onclick = () => {
+          const name = nameInput.value.trim();
+          const comment = commentInput.value.trim();
+          if (name && comment) {
+            fetch(`/comments/${encodeURIComponent(file)}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name, comment })
+            }).then(() => {
+              nameInput.value = '';
+              commentInput.value = '';
+              loadInlineComments(file, commentsDiv);
+            });
+          }
+        };
+        form.appendChild(nameInput);
+        form.appendChild(commentInput);
+        form.appendChild(btn);
+        card.appendChild(form);
+
+        const del = document.createElement('button');
+        del.className = 'text-xs text-red-500 underline mt-1';
+        del.innerText = 'Delete';
+        del.onclick = () => {
+          const password = prompt("Enter admin password to delete this file:");
+          if (!password) return;
+          fetch(`/delete/${encodeURIComponent(file)}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password })
+          }).then(res => {
+            if (res.ok) card.remove();
+            else alert("Unauthorized or failed to delete.");
+          });
+        };
+        card.appendChild(del);
+
+        gallery.appendChild(card);
+      });
+    });
+</script></body>
 </html>
