@@ -102,5 +102,21 @@ def comments(filename):
 
     return jsonify(all_comments.get(filename, []))
 
+
+@app.route('/delete/<filename>', methods=['DELETE'])
+def delete_file(filename):
+    password = request.args.get('password')
+    if password != 'your_password_here':
+        return jsonify({'error': 'Unauthorized'}), 403
+    path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    if os.path.exists(path):
+        os.remove(path)
+        comments = load_comments()
+        comments.pop(filename, None)
+        save_comments(comments)
+        return jsonify({'success': True}), 200
+    return jsonify({'error': 'File not found'}), 404
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
