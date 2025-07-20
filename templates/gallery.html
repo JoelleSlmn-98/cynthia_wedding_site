@@ -4,9 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery | Cynthia & Samer</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com">
+const isAdmin = prompt("Enter admin password:") === "your_password_here";
+if (isAdmin) {
+  document.querySelectorAll(".delete-btn").forEach(btn => btn.classList.remove("hidden"));
+}
+</script>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
+  @font-face {
+    font-family: 'LetterEditorial';
+    src: url("/static/fonts/LetterEditorial.ttf") format("truetype");
+    font-display: swap;
+  }
+
     :root {
       --forest: #B57B66;
       --pine: #A1A79E;
@@ -15,7 +26,7 @@
       --linen: #F4F3F1;
     }
     body {
-      font-family: 'Great Vibes', cursive;
+      font-family: 'LetterEditorial', serif;
       background-color: var(--linen);
       color: var(--forest);
     }
@@ -250,9 +261,43 @@
           container.onclick = () => openModal(index);
 
           if (isImage) {
-            container.innerHTML = `<img src='/uploads/${file}' class='w-full h-60 object-cover rounded border border-[var(--pine)]' alt='Uploaded image'>`;
+            
+    container.innerHTML = `
+      <div class='relative bg-white rounded shadow p-2 flex flex-col items-center'>
+        ${isImage ? 
+          `<img src='/uploads/${file}' class='w-full h-60 object-cover rounded border border-[var(--pine)] mb-2' alt='Uploaded image'>` :
+          `<video class='w-full h-60 object-cover rounded border border-[var(--pine)] mb-2' controls><source src='/uploads/${file}' type='video/${ext}'></video>`}
+        <div class="w-full text-left text-sm text-black p-2 bg-[var(--linen)] border border-[var(--pine)] rounded">
+          <div id="comments-${index}" class="comments-display space-y-1 mb-2"></div>
+          <div class="comment-form flex gap-2">
+            <input type="text" placeholder="Your name" class="flex-1 text-sm p-1 border rounded name-input" />
+            <input type="text" placeholder="Comment..." class="flex-[2] text-sm p-1 border rounded comment-input" />
+            <button class="submit-comment" data-index="${index}">💬</button>
+          </div>
+        </div>
+        <button class="delete-btn mt-2 text-xs text-red-500 underline hidden" data-file="${file}">Delete</button>
+      </div>
+    `;
+    
           } else if (isVideo) {
-            container.innerHTML = `<video class='w-full h-60 object-cover rounded border border-[var(--pine)]'><source src='/uploads/${file}' type='video/${ext}'></video>`;
+            
+    container.innerHTML = `
+      <div class='relative bg-white rounded shadow p-2 flex flex-col items-center'>
+        ${isImage ? 
+          `<img src='/uploads/${file}' class='w-full h-60 object-cover rounded border border-[var(--pine)] mb-2' alt='Uploaded image'>` :
+          `<video class='w-full h-60 object-cover rounded border border-[var(--pine)] mb-2' controls><source src='/uploads/${file}' type='video/${ext}'></video>`}
+        <div class="w-full text-left text-sm text-black p-2 bg-[var(--linen)] border border-[var(--pine)] rounded">
+          <div id="comments-${index}" class="comments-display space-y-1 mb-2"></div>
+          <div class="comment-form flex gap-2">
+            <input type="text" placeholder="Your name" class="flex-1 text-sm p-1 border rounded name-input" />
+            <input type="text" placeholder="Comment..." class="flex-[2] text-sm p-1 border rounded comment-input" />
+            <button class="submit-comment" data-index="${index}">💬</button>
+          </div>
+        </div>
+        <button class="delete-btn mt-2 text-xs text-red-500 underline hidden" data-file="${file}">Delete</button>
+      </div>
+    `;
+    
           }
 
           gallery.appendChild(container);
@@ -262,6 +307,11 @@
         document.getElementById('gallery').innerHTML = '<p class="text-center text-red-500">Failed to load gallery. Make sure the Flask server is running.</p>';
         console.error('Error loading files:', error);
       });
-  </script>
+  
+const isAdmin = prompt("Enter admin password:") === "your_password_here";
+if (isAdmin) {
+  document.querySelectorAll(".delete-btn").forEach(btn => btn.classList.remove("hidden"));
+}
+</script>
 </body>
 </html>
