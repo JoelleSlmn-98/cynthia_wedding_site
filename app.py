@@ -2,10 +2,18 @@
 from flask import Flask, request, redirect, url_for, send_from_directory, jsonify
 from flask import render_template
 import os
+from flask import send_file
+import io
+import zipfile
+
 from werkzeug.utils import secure_filename
 import json
 from flask_cors import CORS
 import os
+from flask import send_file
+import io
+import zipfile
+
 
 app = Flask(__name__)
 CORS(app)
@@ -103,10 +111,23 @@ def comments(filename):
     return jsonify(all_comments.get(filename, []))
 
 
-@app.route('/delete/<filename>', methods=['DELETE'])
+@app.route('/download-all')
+def download_all():
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w') as zf:
+        for filename in os.listdir(app.config['UPLOAD_FOLDER']):
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            if os.path.isfile(filepath):
+                zf.write(filepath, arcname=filename)
+    zip_buffer.seek(0)
+    return send_file(zip_buffer, as_attachment=True, download_name='wedding-gallery.zip', mimetype='application/zip')
+
+
+@app.route('/delete/<filename>', methods=['POST'])
 def delete_file(filename):
-    password = request.args.get('password')
-    if password != 'yowcycy':
+    data = request.get_json()
+    password = data.get('password')
+    if password != 'your_password_here':
         return jsonify({'error': 'Unauthorized'}), 403
     path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     if os.path.exists(path):
