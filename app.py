@@ -106,7 +106,7 @@ def comments(filename):
 @app.route('/delete/<filename>', methods=['DELETE'])
 def delete_file(filename):
     password = request.args.get('password')
-    if password != 'your_password_here':
+    if password != 'yowcycy':
         return jsonify({'error': 'Unauthorized'}), 403
     path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     if os.path.exists(path):
