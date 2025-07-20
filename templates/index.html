@@ -20,11 +20,12 @@
   }
 
     :root {
-      --forest: #36454F;
+      --charcoal: #36454F;
       --pine: #222021;
-      --olive: #000000;
-      --stone: #FFFFFF;
-      --linen: #FFFFFF;
+      --black: #000000;
+      --slate: #26282A;
+      --white: #FFFFFF;
+      --lgrey: #D3D3D3;
     }
     body {
       font-family: 'Rustic Roadway', cursive;
@@ -32,13 +33,13 @@
     nav ul li a {
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
-      background-color: var(--pine);
-      color: var(--linen);
+      background-color: var(--charcoal);
+      color: var(--white);
       transition: background-color 0.3s, color 0.3s;
     }
     nav ul li a:hover {
-      background-color: var(--linen);
-      color: var(--pine);
+      background-color: var(--lgrey);
+      color: var(--charcoal);
     }
   
     .font-cursive {
@@ -50,10 +51,10 @@
 </style>
 </head>
 
-<body class="bg-[var(--linen)] text-[var(--forest)]">
+<body class="bg-[var(--white)] text-[var(--charcoal)]">
   <!-- Navbar -->
   
-<nav class="fixed top-0 w-full bg-[var(--pine)] text-white shadow z-50">
+<nav class="fixed top-0 w-full bg-[var(--slate)] text-white shadow z-50">
   <div class="container mx-auto flex justify-between items-center p-4">
     <span class="text-xl font-bold">Samer & Cynthia</span>
     <button class="md:hidden" id="nav-toggle">
@@ -91,7 +92,7 @@
     <img src="hero photo.jpg" alt="Wedding banner" class="absolute top-0 left-0 w-full h-full object-cover z-0">
     
     
-<div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-[var(--linen)] px-4 pt-32 md:pt-48">
+<div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-[var(--white)] px-4 pt-32 md:pt-48">
   <h1 class="text-7xl mb-2">Samer Dib</h1>
   <h1 class="text-7xl mb-2">&</h1>
   <h1 class="text-7xl mb-6">Cynthia Youwakim</h1>
@@ -109,14 +110,14 @@
     </div>
   </section>
 
-  <section id="rsvp" class="py-24 px-4 bg-[var(--olive)] text-white">
+  <section id="rsvp" class="py-24 px-4 bg-[var(--white)] text-charcoal">
     <h2 class="text-5xl text-center mb-6">RSVP</h2>
     <div class="max-w-2xl mx-auto">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnF9IDA04zRfdRAlLlHIz2ZEzQalh0WX_7B5mAqPbc-k4RnA/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
   </section>
 
-  <section id="details" class="py-24 px-4 bg-[var(--linen)] text-[var(--forest)]">
+  <section id="details" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
     <h2 class="text-5xl text-center mb-6">Wedding Details</h2>
     <ul class="text-2xl text-center space-y-2">
       <li><strong>Dress Code:</strong> Formal</li>
@@ -124,7 +125,7 @@
     </ul>
   </section>
 
-  <section id="venue" class="py-24 px-4 bg-[var(--stone)] text-white">
+  <section id="venue" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
     <h2 class="text-5xl text-center mb-6">Venue</h2>
     <div class="max-w-4xl mx-auto text-center">
       <p class="text-2xl mb-6">Our celebration will take place at <strong>Blanchic</strong>, an outdoor venue in the mountains of Baabdath, Lebanon. This stunning venue offers breathtaking views and modern amenities.</p>
@@ -142,7 +143,7 @@
     </div>
   </section>
 
-  <section id="photos" class="py-24 px-4 bg-[var(--olive)] text-white">
+  <section id="photos" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
     <h2 class="text-5xl text-center mb-6">Upload & View Photos</h2>
     
     <div class="text-2xl mt-8 max-w-4xl mx-auto text-center">
@@ -150,12 +151,12 @@
     </div>
   </section>
 
-  <section id="registry" class="py-24 px-4 bg-[var(--linen)] text-[var(--forest)]">
+  <section id="registry" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
     <h2 class="text-5xl text-center mb-6">Gift Registry</h2>
     <p class="text-2xl text-center italic">Under Construction...</p>
   </section>
 
-  <section id="contact" class="py-24 px-4 bg-[var(--olive)] text-white">
+  <section id="contact" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
     <h2 class="text-5xl text-center mb-6">Contact Us</h2>
     
     <div class="text-2xl text-center space-y-2">
@@ -167,7 +168,7 @@
 
   </section>
 
-  <section id="seating" class="py-24 px-4 bg-[var(--linen)] text-[var(--forest)]">
+  <section id="seating" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
     <h2 class="text-5xl text-center mb-6">Table Seating</h2>
     <p class="text-2xl text-center italic">Seating arrangement will be shared as the date approaches.</p>
   </section>
