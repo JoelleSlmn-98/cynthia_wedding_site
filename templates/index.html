@@ -4,205 +4,207 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Samer & Cynthia's Wedding</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-  @font-face {
-    font-family: 'LetterEditorial';
-    src: url("/static/fonts/mathilde.otf") format("truetype");
-    font-display: swap;
-  }
+    /* ---------- Fonts ---------- */
+    @font-face {
+      font-family: 'Mathilde';
+      src: url("/static/fonts/mathilde.otf") format("opentype");
+      font-display: swap;
+    }
 
-  @font-face {
-    font-family: 'Rustic Roadway';
-    src: url("/static/fonts/mathilde.otf") format("opentype");
-    font-display: swap;
-  }
+    /* IMPORTANT: rename the file below if your Letter Editorial filename differs */
+    @font-face {
+      font-family: 'LetterEditorial';
+      src: url("/static/fonts/letter-editorial.otf") format("opentype");
+      font-display: swap;
+    }
 
+    /* ---------- Theme (black & white) ---------- */
     :root {
-      --charcoal: #667558;
-      --pine: #222021;
-      --black: #000000;
-      --slate: #26282A;
-      --white: #c0c4af;
-      --lgrey: #abb290;
-      --forest: #48573a;
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --accent-color: #000000;
+      --muted-text: #666666;
+      --border-color: #e0e0e0;
+      --hover-bg: #f3f3f3;
     }
-    body {
-      font-family: 'Rustic Roadway', cursive;
+
+    /* ---------- Base Typography ---------- */
+    html, body {
+      padding: 0;
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'LetterEditorial', serif;
     }
+
+    /* Headers use Mathilde */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Mathilde', serif;
+      letter-spacing: 0.02em;
+    }
+
+    /* Utility classes (optional) */
+    .font-body { font-family: 'LetterEditorial', serif; }
+    .font-header { font-family: 'Mathilde', serif; }
+    .font-cursive { font-family: 'Great Vibes', cursive; }
+
+    /* ---------- Navbar Links ---------- */
     nav ul li a {
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
-      background-color: var(--charcoal);
-      color: var(--white);
-      transition: background-color 0.3s, color 0.3s;
-      font-size: 1.5rem; /* Tailwind text-lg = ~18px */
+      background-color: transparent;
+      color: var(--text-color);
+      transition: background-color 0.2s, opacity 0.2s;
+      font-size: 1.5rem;
     }
+
     nav ul li a:hover {
-      background-color: var(--lgrey);
-      color: var(--charcoal);
+      background-color: var(--hover-bg);
+      opacity: 0.9;
     }
-  
-    .font-cursive {
-      font-family: 'Great Vibes', cursive;
-    }
-    .font-body {
-      font-family: 'LetterEditorial', serif;
-    }
-</style>
+  </style>
 </head>
 
-<body class="bg-[var(--white)] text-[var(--charcoal)]">
-  <!-- Navbar -->
-  
-<nav class="fixed top-0 w-full bg-[var(--charcoal)] text-[var(--white)] shadow z-50">
-  <div class="container mx-auto flex justify-between items-center p-4">
-    <span class="text-xl font-bold">Samer & Cynthia</span>
-    <button class="md:hidden" id="nav-toggle">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-    <ul id="nav-menu" class="hidden md:flex space-x-4 flex-col md:flex-row absolute md:static bg-[var(--charcoal)] md:bg-transparent w-full left-0 top-16 md:top-auto p-4 md:p-0 z-50">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#rsvp">RSVP</a></li>
-      <li><a href="#details">More Details</a></li>
-      <li><a href="#venue">Venue</a></li>
-      <li><a href="#photos">Photos</a></li>
-      <li><a href="#registry">Registry</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#seating">Seating</a></li>
-    </ul>
-  </div>
-</nav>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggle = document.getElementById('nav-toggle');
-    const menu = document.getElementById('nav-menu');
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
+<body class="bg-[var(--bg-color)] text-[var(--text-color)]">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full bg-[var(--bg-color)] text-[var(--text-color)] shadow z-50 border-b border-[var(--border-color)]">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-xl font-bold">S & C</div>
+
+      <!-- Mobile toggle -->
+      <button id="menu-toggle" class="md:hidden text-3xl font-bold">☰</button>
+
+      <ul id="nav-menu" class="hidden md:flex space-x-4 flex-col md:flex-row absolute md:static bg-[var(--bg-color)] md:bg-transparent w-full left-0 top-16 md:top-auto p-4 md:p-0 z-50">
+        <li><a href="#home" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Home</a></li>
+        <li><a href="#rsvp" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">RSVP</a></li>
+        <li><a href="#details" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Details</a></li>
+        <li><a href="#venue" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Venue</a></li>
+        <li><a href="#photos" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Photos</a></li>
+        <li><a href="#gifts" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Gifts</a></li>
+        <li><a href="#contact" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("nav-menu");
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
     });
-  });
-</script>
+  </script>
 
-
-  <!-- Hero Section -->
+  <!-- HERO SECTION -->
   <section id="home" class="relative h-screen w-full pt-24">
     <img src="hero photo.jpg" alt="Wedding banner" class="absolute top-0 left-0 w-full h-full object-cover z-0">
-    
-    
-<div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-32 md:pt-48">
-  <h1 class="text-7xl mb-2">Samer Dib</h1>
-  <h1 class="text-7xl mb-2">&</h1>
-  <h1 class="text-7xl mb-6">Cynthia Youwakim</h1>
-  <p class="text-3xl mb-4">Are Getting Married!</p>
-  <div class="h-6"></div>
-  <p class="text-2xl">Saturday, June 20, 2026</p>
-  <p class="text-2xl">Blanchic - Baabdath, Metn</p>
-</div>
 
-
-      <h1 class="text-5xl mb-4">Samer Dib & Cynthia Youwakim</h1>
-      <p class="text-2xl mb-2">Are Getting Married!</p>
-      <p class="text-xl">Saturday, June 20, 2026 - Blanchic</p>
-      <p class="text-xl">Baabdath, Metn</p>
+    <div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-32 md:pt-48">
+      <h1 class="text-7xl mb-2">Samer Dib</h1>
+      <h1 class="text-7xl mb-2">&</h1>
+      <h1 class="text-7xl mb-6">Cynthia Youwakim</h1>
+      <p class="text-3xl mb-4 font-body">Are Getting Married!</p>
+      <div class="h-6"></div>
+      <p class="text-2xl font-body">Saturday, June 20, 2026</p>
+      <p class="text-2xl font-body">Blanchic - Baabdath, Metn</p>
     </div>
   </section>
 
-  <section id="rsvp" class="py-24 px-4 bg-[var(--white)] text-charcoal">
+  <!-- RSVP -->
+  <section id="rsvp" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-5xl text-center mb-6">RSVP</h2>
     <div class="max-w-2xl mx-auto">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnF9IDA04zRfdRAlLlHIz2ZEzQalh0WX_7B5mAqPbc-k4RnA/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnFq4sJfQFx4m6Yd7yhl2lq8F8hU1nS3zV4-8FZKNYM8Gx8Q/viewform?embedded=true"
+              width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
   </section>
 
   <div class="flex items-center justify-center my-16">
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
-    <span class="mx-4 text-2xl text-[var(--charcoal)] font-body font-bold">S & C</span>
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+    <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
   </div>
-  
-  <section id="details" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
+
+  <!-- DETAILS -->
+  <section id="details" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-5xl text-center mb-6">Wedding Details</h2>
-    <ul class="text-3xl text-center space-y-2">
-      <li><strong>Dress Code:</strong> Formal</li>
-      <li><strong>Schedule:</strong> Coming soon...</li>
+    <ul class="text-3xl text-center space-y-2 font-body">
+      <li><strong>Date:</strong> Saturday, June 20, 2026</li>
+      <li><strong>Location:</strong> Blanchic - Baabdath, Metn</li>
+      <li><strong>Time:</strong> Ceremony at 6:00 PM</li>
     </ul>
   </section>
 
   <div class="flex items-center justify-center my-16">
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
-    <span class="mx-4 text-2xl text-[var(--charcoal)] font-body font-bold">S & C</span>
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+    <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
   </div>
-  
-  <section id="venue" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
+
+  <!-- VENUE -->
+  <section id="venue" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-5xl text-center mb-6">Venue</h2>
-    <div class="max-w-4xl mx-auto text-center">
-      <p class="text-3xl mb-6">Our celebration will take place at <strong>Blanchic</strong>, an outdoor venue in the mountains of Baabdath, Lebanon. This stunning venue offers breathtaking views and modern amenities.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <img src="https://tse2.mm.bing.net/th/id/OIP.mcDDZkB4FOO6fHy-latrPAHaHa?pid=Api" alt="Venue photo 1" class="w-full rounded shadow">
-        <img src="https://tse3.mm.bing.net/th/id/OIP.QIUajzugTx5qVZtGdBktCAHaHa?pid=Api" alt="Venue photo 2" class="w-full rounded shadow">
-        <img src="https://tse3.mm.bing.net/th/id/OIP.I0a1d29nP6ELj91s-Aa6jwHaHa?pid=Api" alt="Venue photo 3" class="w-full rounded shadow">
-      </div>
-      <ul class="text-3xl mb-8 text-left list-disc list-inside">
-        <li>Valet Parking Available</li>
-      </ul>
-      <div class="w-full h-96">
-        <iframe class="w-full h-full rounded" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=blanchic%20baabdath&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+    <div class="text-3xl text-center space-y-4 font-body">
+      <p>Blanchic</p>
+      <p>Baabdath, Metn</p>
+      <div class="max-w-4xl mx-auto mt-8">
+        <iframe
+          class="w-full h-96 rounded-lg border border-[var(--border-color)]"
+          src="https://www.google.com/maps?q=Blanchic%20Baabdath%20Metn&output=embed"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
       </div>
     </div>
   </section>
 
   <div class="flex items-center justify-center my-16">
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
-    <span class="mx-4 text-2xl text-[var(--charcoal)] font-body font-bold">S & C</span>
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+    <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
   </div>
-  
-  <section id="photos" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
-    <h2 class="text-5xl text-center mb-6">Upload & View Photos</h2>
-    
-    <div class="text-3xl mt-8 max-w-4xl mx-auto text-center">
-      <a href="/gallery" class="text-3xl underline text-[var(--charcoal)] text-3xl hover:text-[var(--slate)]">View Uploaded Photos & Videos →</a>
+
+  <!-- PHOTOS -->
+  <section id="photos" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
+    <h2 class="text-5xl text-center mb-6">Photos</h2>
+    <div class="text-3xl text-center font-body">
+      <p class="mb-6">Upload your wedding photos here:</p>
+      <a href="photos.html" class="text-3xl underline text-[var(--text-color)] hover:opacity-70">Go to Photo Upload</a>
     </div>
   </section>
 
   <div class="flex items-center justify-center my-16">
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
-    <span class="mx-4 text-2xl text-[var(--charcoal)] font-body font-bold">S & C</span>
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+    <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
   </div>
-  
-  <section id="registry" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
+
+  <!-- GIFTS -->
+  <section id="gifts" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-5xl text-center mb-6">Gift Registry</h2>
-    <p class="text-3xl text-center italic">Under Construction...</p>
+    <div class="text-3xl text-center space-y-4 font-body">
+      <p>Your presence is the best gift!</p>
+      <p>If you’d still like to contribute, here are our registry details:</p>
+      <p><strong>Registry Link:</strong> (Add link here)</p>
+    </div>
   </section>
 
   <div class="flex items-center justify-center my-16">
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
-    <span class="mx-4 text-2xl text-[var(--charcoal)] font-body font-bold">S & C</span>
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
-  </div>
-  
-  <section id="seating" class="py-24 px-4 bg-[var(--white)] text-[var(--charcoal)]">
-    <h2 class="text-5xl text-center mb-6">Table Seating</h2>
-    <p class="text-3xl text-center italic">Seating arrangement will be shared as the date approaches.</p>
-  </section>
-
-  <div class="flex items-center justify-center my-16">
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
-    <span class="mx-4 text-2xl text-[var(--charcoal)] font-body font-bold">S & C</span>
-    <hr class="border-t w-1/4" style="border-color: var(--charcoal);">
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+    <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
   </div>
 
-  <section id="contact" class="py-24 px-4 bg-[var(--white)] text-[var(--forest)]">
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-5xl text-center mb-6">Contact Us</h2>
-    
-    <div class="text-3xl text-center text-[var(--forest)] space-y-2">
+
+    <div class="text-3xl text-center space-y-2 font-body">
       <p>Cynthia Youwakim - +961 81687547</p>
       <p>Samer Dib - +961 70821225</p>
       <div class="h-4"></div>
@@ -210,6 +212,5 @@
     </div>
   </section>
 
-  
 </body>
 </html>
