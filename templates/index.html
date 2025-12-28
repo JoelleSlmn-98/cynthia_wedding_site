@@ -12,7 +12,7 @@
     /* ---------- Fonts ---------- */
     @font-face {
       font-family: 'Mathilde';
-      src: url("/static/fonts/mathilde.otf") format("opentype");
+      src: url("/static/fonts/LetterEditorial.ttf") format("opentype");
       font-display: swap;
     }
 
@@ -60,7 +60,7 @@
       background-color: transparent;
       color: var(--text-color);
       transition: background-color 0.2s, opacity 0.2s;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
 
     nav ul li a:hover {
@@ -75,19 +75,19 @@
   <!-- NAVBAR -->
   <nav class="fixed top-0 w-full bg-[var(--bg-color)] text-[var(--text-color)] shadow z-50 border-b border-[var(--border-color)]">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="text-xl font-bold">S & C</div>
+      <div class="text-l font-bold">S & C</div>
 
       <!-- Mobile toggle -->
       <button id="menu-toggle" class="md:hidden text-3xl font-bold">☰</button>
 
       <ul id="nav-menu" class="hidden md:flex space-x-4 flex-col md:flex-row absolute md:static bg-[var(--bg-color)] md:bg-transparent w-full left-0 top-16 md:top-auto p-4 md:p-0 z-50">
-        <li><a href="#home" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Home</a></li>
-        <li><a href="#rsvp" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">RSVP</a></li>
-        <li><a href="#details" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Details</a></li>
-        <li><a href="#venue" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Venue</a></li>
-        <li><a href="#photos" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Photos</a></li>
-        <li><a href="#gifts" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Gifts</a></li>
-        <li><a href="#contact" class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">Contact</a></li>
+        <li><a href="#home" class="mx-4 text-2xl text-[var(--text-color)] font-body">Home</a></li>
+        <li><a href="#rsvp" class="mx-4 text-2xl text-[var(--text-color)] font-body">RSVP</a></li>
+        <li><a href="#details" class="mx-4 text-2xl text-[var(--text-color)] font-body">Details</a></li>
+        <li><a href="#venue" class="mx-4 text-2xl text-[var(--text-color)] font-body">Venue</a></li>
+        <li><a href="#photos" class="mx-4 text-2xl text-[var(--text-color)] font-body">Photos</a></li>
+        <li><a href="#gifts" class="mx-4 text-2xl text-[var(--text-color)] font-body">Gifts</a></li>
+        <li><a href="#contact" class="mx-4 text-2xl text-[var(--text-color)] font-body">Contact</a></li>
       </ul>
     </div>
   </nav>
