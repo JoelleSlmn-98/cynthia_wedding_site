@@ -81,13 +81,14 @@
       <button id="menu-toggle" class="md:hidden text-3xl font-bold">☰</button>
 
       <ul id="nav-menu" class="hidden md:flex space-x-4 flex-col md:flex-row absolute md:static bg-[var(--bg-color)] md:bg-transparent w-full left-0 top-16 md:top-auto p-4 md:p-0 z-50">
-        <li><a href="#home" class="mx-4 text-2xl text-[var(--text-color)] font-body">Home</a></li>
-        <li><a href="#rsvp" class="mx-4 text-2xl text-[var(--text-color)] font-body">RSVP</a></li>
-        <li><a href="#details" class="mx-4 text-2xl text-[var(--text-color)] font-body">Details</a></li>
-        <li><a href="#venue" class="mx-4 text-2xl text-[var(--text-color)] font-body">Venue</a></li>
-        <li><a href="#photos" class="mx-4 text-2xl text-[var(--text-color)] font-body">Photos</a></li>
-        <li><a href="#gifts" class="mx-4 text-2xl text-[var(--text-color)] font-body">Gifts</a></li>
-        <li><a href="#contact" class="mx-4 text-2xl text-[var(--text-color)] font-body">Contact</a></li>
+        <li><a href="#home" class="mx-4 text-l text-[var(--text-color)] font-body">Home</a></li>
+        <li><a href="#faq" class="mx-4 text-l text-[var(--text-color)] font-body">FAQ</a></li>
+        <li><a href="#rsvp" class="mx-4 text-l text-[var(--text-color)] font-body">RSVP</a></li>
+        <li><a href="#details" class="mx-4 text-l text-[var(--text-color)] font-body">Details</a></li>
+        <li><a href="#venue" class="mx-4 text-l text-[var(--text-color)] font-body">Venue</a></li>
+        <li><a href="#photos" class="mx-4 text-l text-[var(--text-color)] font-body">Photos</a></li>
+        <li><a href="#gifts" class="mx-4 text-l text-[var(--text-color)] font-body">Gifts</a></li>
+        <li><a href="#contact" class="mx-4 text-l text-[var(--text-color)] font-body">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -105,20 +106,27 @@
     <img src="hero photo.jpg" alt="Wedding banner" class="absolute top-0 left-0 w-full h-full object-cover z-0">
 
     <div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-32 md:pt-48">
-      <h1 class="text-7xl mb-2">Samer Dib</h1>
-      <h1 class="text-7xl mb-2">&</h1>
-      <h1 class="text-7xl mb-6">Cynthia Youwakim</h1>
-      <p class="text-3xl mb-4 font-body">Are Getting Married!</p>
+      <h1 class="text-4xl mb-2">Samer Dib</h1>
+      <h1 class="text-4xl mb-2">&</h1>
+      <h1 class="text-4xl mb-6">Cynthia Youwakim</h1>
+      <p class="text-xl mb-4 font-body">Are Getting Married!</p>
       <div class="h-6"></div>
-      <p class="text-2xl font-body">Saturday, June 20, 2026</p>
-      <p class="text-2xl font-body">Blanchic - Baabdath, Metn</p>
+      <p class="text-xl font-body">Saturday, June 20, 2026</p>
+      <p class="text-xl font-body">Blanchic - Baabdath, Metn</p>
     </div>
   </section>
 
+  <section id="faq" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
+    <h2 class="text-4xl text-center mb-6">FAQ</h2>
+    <div class="text-xl text-center space-y-4 font-body">
+      <p>BLABLABLA</p>
+    </div>
+  </section>
+  
   <!-- RSVP -->
   <section id="rsvp" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-5xl text-center mb-6">RSVP</h2>
-    <div class="max-w-2xl mx-auto">
+    <h2 class="text-4xl text-center mb-6">RSVP</h2>
+    <div class="max-w-xl mx-auto">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnFq4sJfQFx4m6Yd7yhl2lq8F8hU1nS3zV4-8FZKNYM8Gx8Q/viewform?embedded=true"
               width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
@@ -132,8 +140,8 @@
 
   <!-- DETAILS -->
   <section id="details" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-5xl text-center mb-6">Wedding Details</h2>
-    <ul class="text-3xl text-center space-y-2 font-body">
+    <h2 class="text-4xl text-center mb-6">Wedding Details</h2>
+    <ul class="text-xl text-center space-y-2 font-body">
       <li><strong>Date:</strong> Saturday, June 20, 2026</li>
       <li><strong>Location:</strong> Blanchic - Baabdath, Metn</li>
       <li><strong>Time:</strong> Ceremony at 6:00 PM</li>
@@ -148,11 +156,11 @@
 
   <!-- VENUE -->
   <section id="venue" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-5xl text-center mb-6">Venue</h2>
-    <div class="text-3xl text-center space-y-4 font-body">
+    <h2 class="text-4xl text-center mb-6">Venue</h2>
+    <div class="text-2xl text-center space-y-4 font-body">
       <p>Blanchic</p>
       <p>Baabdath, Metn</p>
-      <div class="max-w-4xl mx-auto mt-8">
+      <div class="max-w-2xl mx-auto mt-8">
         <iframe
           class="w-full h-96 rounded-lg border border-[var(--border-color)]"
           src="https://www.google.com/maps?q=Blanchic%20Baabdath%20Metn&output=embed"
@@ -171,8 +179,8 @@
 
   <!-- PHOTOS -->
   <section id="photos" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-5xl text-center mb-6">Photos</h2>
-    <div class="text-3xl text-center font-body">
+    <h2 class="text-4xl text-center mb-6">Photos</h2>
+    <div class="text-2xl text-center font-body">
       <p class="mb-6">Upload your wedding photos here:</p>
       <a href="photos.html" class="text-3xl underline text-[var(--text-color)] hover:opacity-70">Go to Photo Upload</a>
     </div>
@@ -186,8 +194,8 @@
 
   <!-- GIFTS -->
   <section id="gifts" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-5xl text-center mb-6">Gift Registry</h2>
-    <div class="text-3xl text-center space-y-4 font-body">
+    <h2 class="text-4xl text-center mb-6">Gift Registry</h2>
+    <div class="text-2xl text-center space-y-4 font-body">
       <p>Your presence is the best gift!</p>
       <p>If you’d still like to contribute, here are our registry details:</p>
       <p><strong>Registry Link:</strong> (Add link here)</p>
@@ -202,9 +210,9 @@
 
   <!-- CONTACT -->
   <section id="contact" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-5xl text-center mb-6">Contact Us</h2>
+    <h2 class="text-4xl text-center mb-6">Contact Us</h2>
 
-    <div class="text-3xl text-center space-y-2 font-body">
+    <div class="text-2xl text-center space-y-2 font-body">
       <p>Cynthia Youwakim - +961 81687547</p>
       <p>Samer Dib - +961 70821225</p>
       <div class="h-4"></div>
