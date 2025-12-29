@@ -204,8 +204,8 @@
     <h2 class="text-4xl text-center mb-10">RSVP</h2>
     <p id="rsvp-who" class="font-body text-2xl text-center mb-6"></p>
     <div class="max-w-2xl mx-auto">
-      <div class="rounded-2xl border border-[var(--border-color)] bg-white/70 backdrop-blur-sm shadow-sm p-6 md:p-10">
-        <p class="text-center font-body text-lg mb-8 text-[var(--text-color)]/80">
+      <div class="rounded-base border border-[var(--border-color)] bg-white/70 backdrop-blur-sm shadow-sm p-6 md:p-10">
+        <p class="text-center font-body text-base mb-8 text-[var(--text-color)]/80">
           Please let us know if you'll be joining us. We can't wait to celebrate with you!
         </p>
   
@@ -233,7 +233,7 @@
             <label for="attending" class="block font-body text-sm tracking-wide uppercase mb-2 text-[var(--text-color)]/80">
               Number attending
             </label>
-            <label class="w-full rounded-xl border border-[var(--border-color)] bg-white px-4 py-3 font-body text-base 
+            <label class="w-full rounded-xl border border-[var(--border-color)] bg-white px-4 py-3 font-body text-sm 
               focus:outline-none focus:ring-2 focus:ring-[var(--text-color)]/30">
               <input
                 id="count"
@@ -254,7 +254,7 @@
               id="dietary"
               rows="4"
               placeholder="e.g., vegetarian, allergy..."
-              class="w-full rounded-xl border border-[var(--border-color)] bg-white px-4 py-3 font-body text-base
+              class="w-full rounded-xl border border-[var(--border-color)] bg-white px-4 py-3 font-body text-sm
                      focus:outline-none focus:ring-2 focus:ring-[var(--text-color)]/30"
             ></textarea>
           </div>
@@ -375,19 +375,43 @@
 
   <!-- VENUE -->
   <section id="venue" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-4xl text-center space-y-6 mb-6">Venue</h2>
-    <div class="text-base text-center space-y-4 font-body">
-      <p class="text-base mb-6">Our celebration will take place at <strong>Blanchic</strong>, an outdoor venue in the mountains of Baabdath, Lebanon.</p>
+    <h2 class="text-4xl text-center mb-6">Venue</h2>
+  
+    <!-- 4xl width container -->
+    <div class="max-w-4xl mx-auto text-base text-center space-y-6 font-body">
+  
+      <p class="mb-6">
+        Our celebration will take place at <strong>Blanchic</strong>, an outdoor venue in the mountains of Baabdath, Lebanon.
+      </p>
+  
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <img src="https://tse2.mm.bing.net/th/id/OIP.mcDDZkB4FOO6fHy-latrPAHaHa?pid=Api" alt="Venue photo 1" class="w-full rounded shadow">
-        <img src="https://tse3.mm.bing.net/th/id/OIP.QIUajzugTx5qVZtGdBktCAHaHa?pid=Api" alt="Venue photo 2" class="w-full rounded shadow">
+        <img
+          src="https://tse2.mm.bing.net/th/id/OIP.mcDDZkB4FOO6fHy-latrPAHaHa?pid=Api"
+          alt="Venue photo 1"
+          class="w-full rounded shadow"
+        >
+        <img
+          src="https://tse3.mm.bing.net/th/id/OIP.QIUajzugTx5qVZtGdBktCAHaHa?pid=Api"
+          alt="Venue photo 2"
+          class="w-full rounded shadow"
+        >
       </div>
-      <ul class="text-base mb-8 text-left list-disc list-inside">
+  
+      <ul class="mb-8 text-left list-disc list-inside">
         <li>Valet Parking Available</li>
       </ul>
+  
       <div class="w-full h-96">
-        <iframe class="w-full h-full rounded" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=blanchic%20baabdath&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+        <iframe
+          class="w-full h-full rounded"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+          src="https://maps.google.com/maps?q=blanchic%20baabdath&t=&z=15&ie=UTF8&iwloc=&output=embed">
+        </iframe>
       </div>
+  
     </div>
   </section>
 
