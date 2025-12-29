@@ -127,6 +127,7 @@
         <li><a href="#details" class="mx-4 text-lg text-[var(--text-color)] font-body">Details</a></li>
         <li><a href="#venue" class="mx-4 text-lg text-[var(--text-color)] font-body">Venue</a></li>
         <li><a href="#photos" class="mx-4 text-lg text-[var(--text-color)] font-body">Photos</a></li>
+        <li><a href="#seating" class="mx-4 text-lg text-[var(--text-color)] font-body">Seating</a></li>
         <li><a href="#gifts" class="mx-4 text-lg text-[var(--text-color)] font-body">Gifts</a></li>
         <li><a href="#contact" class="mx-4 text-lg text-[var(--text-color)] font-body">Contact</a></li>
       </ul>
@@ -342,7 +343,7 @@
   <!-- DETAILS -->
   <section id="details" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-4xl text-center space-y-6 mb-6">Wedding Details</h2>
-    <ul class="text-base text-center font-body">
+    <ul class="text-base text-center space-y-4 font-body">
       <li><strong>Date:</strong> Saturday, June 20, 2026</li>
       <li><strong>Location:</strong> Blanchic - Baabdath, Metn</li>
       <li><strong>Schedule:</strong></li>
@@ -361,16 +362,18 @@
   <!-- VENUE -->
   <section id="venue" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-4xl text-center space-y-6 mb-6">Venue</h2>
-    <div class="text-base text-center font-body">
-      <p>Blanchic</p>
-      <p>Baabdath, Metn</p>
-      <div class="max-w-2xl mx-auto mt-8">
-        <iframe
-          class="w-full h-96 rounded-lg border border-[var(--border-color)]"
-          src="https://www.google.com/maps?q=Blanchic%20Baabdath%20Metn&output=embed"
-          allowfullscreen=""
-          loading="lazy">
-        </iframe>
+    <div class="text-base text-center space-y-4 font-body">
+      <p class="text-base mb-6">Our celebration will take place at <strong>Blanchic</strong>, an outdoor venue in the mountains of Baabdath, Lebanon.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.mcDDZkB4FOO6fHy-latrPAHaHa?pid=Api" alt="Venue photo 1" class="w-full rounded shadow">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.QIUajzugTx5qVZtGdBktCAHaHa?pid=Api" alt="Venue photo 2" class="w-full rounded shadow">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.I0a1d29nP6ELj91s-Aa6jwHaHa?pid=Api" alt="Venue photo 3" class="w-full rounded shadow">
+      </div>
+      <ul class="text-base mb-8 text-left list-disc list-inside">
+        <li>Valet Parking Available</li>
+      </ul>
+      <div class="w-full h-96">
+        <iframe class="w-full h-full rounded" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=blanchic%20baabdath&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
       </div>
     </div>
   </section>
@@ -390,6 +393,17 @@
     </div>
   </section>
 
+  <div class="flex items-center justify-center my-16">
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+    <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+  </div>
+
+  <section id="seating" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
+    <h2 class="text-5xl text-center mb-6">Table Seating</h2>
+    <p class="text-3xl text-center italic">Seating arrangement will be shared as the date approaches.</p>
+  </section>
+  
   <div class="flex items-center justify-center my-16">
     <hr class="border-t w-1/4" style="border-color: var(--text-color);">
     <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
