@@ -673,12 +673,15 @@
         return;
       }
 
-      statusEl.textContent = "Submitting…";
+      statusEl.textContent = "Submitting...";
 
       try {
         const res = await fetch(POST_URL, {
           method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          mode: "cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
           body: JSON.stringify({ inviteId, attending, count, dietary }),
         });
 
@@ -692,7 +695,7 @@
           return;
         }
 
-        statusEl.textContent = "✅ RSVP submitted! Thank you.";
+        statusEl.textContent = "RSVP submitted! Thank you.";
 
         // optional: disable after submit
         // form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
