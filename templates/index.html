@@ -111,7 +111,7 @@
     <img
       src="hero photo.jpg"
       alt="Wedding banner"
-      class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-90"
+      class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-100"
     >
   
     <!-- Overlay content -->
@@ -150,6 +150,20 @@
     </div>
   </section>
 
+  <!-- RSVP -->
+  <section id="rsvp" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
+    <h2 class="text-4xl text-center mb-6">RSVP</h2>
+    <div class="max-w-xl mx-auto">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnFq4sJfQFx4m6Yd7yhl2lq8F8hU1nS3zV4-8FZKNYM8Gx8Q/viewform?embedded=true"
+              width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+  </section>
+
+  <div class="flex items-center justify-center my-16">
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+    <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
+    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
+  </div>
 
 <section id="faq" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
   <h2 class="text-4xl text-center mb-10">Frequently Asked Questions</h2>
@@ -213,22 +227,6 @@
   </ul>
 </section>
 
-
-  <div class="flex items-center justify-center my-16">
-    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
-    <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
-    <hr class="border-t w-1/4" style="border-color: var(--text-color);">
-  </div>
-  
-  <!-- RSVP -->
-  <section id="rsvp" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-4xl text-center mb-6">RSVP</h2>
-    <div class="max-w-xl mx-auto">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnFq4sJfQFx4m6Yd7yhl2lq8F8hU1nS3zV4-8FZKNYM8Gx8Q/viewform?embedded=true"
-              width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    </div>
-  </section>
-
   <div class="flex items-center justify-center my-16">
     <hr class="border-t w-1/4" style="border-color: var(--text-color);">
     <span class="mx-4 text-2xl text-[var(--text-color)] font-body font-bold">S & C</span>
@@ -237,11 +235,14 @@
 
   <!-- DETAILS -->
   <section id="details" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-4xl text-center mb-6">Wedding Details</h2>
-    <ul class="text-base text-center space-y-6 font-body">
+    <h2 class="text-4xl text-center space-y-6 mb-6">Wedding Details</h2>
+    <ul class="text-base text-center font-body">
       <li><strong>Date:</strong> Saturday, June 20, 2026</li>
       <li><strong>Location:</strong> Blanchic - Baabdath, Metn</li>
-      <li><strong>Time:</strong> Ceremony at 6:00 PM</li>
+      <li><strong>Schedule:</strong></li>
+      <li>Ceremony at 6:00pm</li>
+      <li>Welcome drinks at 7:00pm</li>
+      <li>Reception at 8:00pm</li>
     </ul>
   </section>
 
@@ -253,8 +254,8 @@
 
   <!-- VENUE -->
   <section id="venue" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-4xl text-center mb-6">Venue</h2>
-    <div class="text-2xl text-center space-y-6 font-body">
+    <h2 class="text-4xl text-center space-y-6 mb-6">Venue</h2>
+    <div class="text-base text-center font-body">
       <p>Blanchic</p>
       <p>Baabdath, Metn</p>
       <div class="max-w-2xl mx-auto mt-8">
@@ -276,8 +277,8 @@
 
   <!-- PHOTOS -->
   <section id="photos" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-4xl text-center mb-6">Photos</h2>
-    <div class="text-base text-center space-y-6 font-body">
+    <h2 class="text-4xl text-center space-y-6 mb-6">Photos</h2>
+    <div class="text-base text-center font-body">
       <p class="mb-6">Upload your wedding photos here:</p>
       <a href="photos.html" class="text-base underline text-[var(--text-color)] hover:opacity-70">Go to Photo Upload</a>
     </div>
@@ -291,8 +292,8 @@
 
   <!-- GIFTS -->
   <section id="gifts" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-4xl text-center mb-6">Gift Registry</h2>
-    <div class="text-base text-center space-y-6 font-body">
+    <h2 class="text-4xl text-center space-y-6 mb-6">Gift Registry</h2>
+    <div class="text-base text-center font-body">
       <p>Your presence is the best gift!</p>
       <p>If you’d still like to contribute, here are our registry details:</p>
       <p><strong>Registry Link:</strong> (Add link here)</p>
@@ -307,9 +308,9 @@
 
   <!-- CONTACT -->
   <section id="contact" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
-    <h2 class="text-4xl text-center mb-6">Contact Us</h2>
+    <h2 class="text-4xl text-center space-y-6 mb-6">Contact Us</h2>
 
-    <div class="text-base text-center space-y-6 font-body">
+    <div class="text-base text-center font-body">
       <p>Cynthia Youwakim - +961 81687547</p>
       <p>Samer Dib - +961 70821225</p>
       <div class="h-4"></div>
