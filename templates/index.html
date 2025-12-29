@@ -205,6 +205,7 @@
 
   <!-- RSVP -->
   <section id="rsvp-locked" class="py-24 px-4 text-center text-lg">
+    <h2 class="text-4xl text-center mb-10">RSVP</h2>
     <p>
       RSVP is available via your personal invitation link.
       <br>
@@ -549,12 +550,12 @@
     : "";
   const hashParams = new URLSearchParams(hashQuery);
 
-  const inviteId = (urlParams.get("invite") || hashParams.get("invite") || "").trim();
+  const inviteIdForLookup = (urlParams.get("invite") || hashParams.get("invite") || "").trim();
 
-  if (!inviteId) {
+  if (!inviteIdForLookup) {
     whoEl.textContent = "";
   } else {
-    inviteEl.value = inviteId;
+    inviteEl.value = inviteIdForLookup;
 
     window.handleInviteLookup = (data) => {
       console.log("Invite lookup:", data);
@@ -574,7 +575,7 @@
     };
 
     const s = document.createElement("script");
-    s.src = `${API_URL}?inviteId=${encodeURIComponent(inviteId)}&callback=handleInviteLookup`;
+    s.src = `${API_URL}?inviteId=${encodeURIComponent(inviteIdForLookup)}&callback=handleInviteLookup`;
     s.onerror = () => {
       whoEl.textContent = "Could not load invite details. Please refresh.";
     };
@@ -583,13 +584,21 @@
 </script>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const inviteId = params.get("invite");
+  // supports:
+  // 1) https://site.com/?invite=G-002#rsvp
+  // 2) https://site.com/#rsvp?invite=G-002
+  const urlParams = new URLSearchParams(window.location.search);
+  const hashQuery = window.location.hash.includes("?")
+    ? window.location.hash.split("?")[1]
+    : "";
+  const hashParams = new URLSearchParams(hashQuery);
+
+  const inviteFromUrl = (urlParams.get("invite") || hashParams.get("invite") || "").trim();
 
   const rsvpSection = document.getElementById("rsvp");
   const lockedSection = document.getElementById("rsvp-locked");
 
-  if (inviteId) {
+  if (inviteFromUrl) {
     rsvpSection.style.display = "block";
     lockedSection.style.display = "none";
   } else {
