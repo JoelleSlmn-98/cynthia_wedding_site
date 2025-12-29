@@ -189,7 +189,7 @@
   <!-- RSVP -->
   <section id="rsvp" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-4xl text-center mb-10">RSVP</h2>
-  
+    <p id="rsvp-who" class="font-body text-2xl text-center mb-6"></p>
     <div class="max-w-2xl mx-auto">
       <div class="rounded-2xl border border-[var(--border-color)] bg-white/70 backdrop-blur-sm shadow-sm p-6 md:p-10">
         <p class="text-center font-body text-lg mb-8 text-[var(--text-color)]/80">
@@ -215,7 +215,20 @@
               <option value="No">No, I can’t make it</option>
             </select>
           </div>
-  
+
+          <div>
+            <label class="block mb-4">
+              Number attending
+              <input
+                id="count"
+                type="number"
+                min="1"
+                value="1"
+                class="border p-2 w-full"
+              >
+            </label>
+          </div>
+          
           <!-- Dietary -->
           <div>
             <label for="dietary" class="block font-body text-sm tracking-wide uppercase mb-2 text-[var(--text-color)]/80">
@@ -488,6 +501,60 @@ document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
   } else {
     alert(result.error);
   }
+});
+</script>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbyRsgvO2owDAmBWWlXpTCXlG_envTuWRt5mcbpDdLCmowkNxaAd5r0jmMPLf-OLM7M/exec";
+
+const params = new URLSearchParams(window.location.hash.split("?")[1]);
+const inviteId = params.get("invite");
+
+if (!inviteId) {
+  document.getElementById("rsvp-who").textContent =
+    "Invalid RSVP link. Please use the link you were sent.";
+} else {
+  // Lookup guest info
+  fetch(`${API_URL}?inviteId=${encodeURIComponent(inviteId)}`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data.success) {
+        document.getElementById("rsvp-who").textContent =
+          "Invite not found. Please use the link you were sent.";
+        return;
+      }
+
+      document.getElementById("rsvp-who").textContent =
+        `RSVP for: ${data.name}`;
+
+      const countEl = document.getElementById("count");
+      countEl.max = data.maxPartySize || 1;
+      countEl.value = 1;
+    })
+    .catch(() => {
+      document.getElementById("rsvp-who").textContent =
+        "Could not load invite details. Please try again.";
+    });
+}
+
+// Submit handler
+document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const payload = {
+    inviteId,
+    attending: document.getElementById("attending").value,
+    count: Number(document.getElementById("count").value || 1),
+    dietary: document.getElementById("dietary").value
+  };
+
+  const res = await fetch(API_URL, {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+
+  const result = await res.json();
+  alert(result.success ? "Thank you for your RSVP!" : (result.error || "Error"));
 });
 </script>
   
