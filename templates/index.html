@@ -636,6 +636,75 @@
     }, 3000);
   })();
 </script>
+
+<script>
+  (function () {
+    const POST_URL =
+      "https://script.google.com/macros/s/AKfycbwsirLUdeG6hmSgg757OyJQzy9ltVLLOF_8MdXlzcMGizR0kIoQFWKBiqqGHZYgYeTD/exec";
+
+    const form = document.getElementById("rsvp-form");
+    const whoEl = document.getElementById("rsvp-who");
+
+    if (!form) return;
+
+    // status message element (created once)
+    let statusEl = document.getElementById("rsvp-status");
+    if (!statusEl) {
+      statusEl = document.createElement("p");
+      statusEl.id = "rsvp-status";
+      statusEl.className = "text-center font-body text-sm pt-3";
+      form.appendChild(statusEl);
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); // <<<<<< stops the page “redirect/reload”
+
+      const inviteId = (document.getElementById("inviteId")?.value || "").trim();
+      const attending = (document.getElementById("attending")?.value || "").trim();
+      const dietary = (document.getElementById("dietary")?.value || "").trim();
+      const count = Number(document.getElementById("count")?.value || 1);
+
+      if (!inviteId) {
+        statusEl.textContent = "Missing invite id. Please use your personal link.";
+        return;
+      }
+      if (!attending) {
+        statusEl.textContent = "Please select whether you are attending.";
+        return;
+      }
+
+      statusEl.textContent = "Submitting…";
+
+      try {
+        const res = await fetch(POST_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ inviteId, attending, count, dietary }),
+        });
+
+        const text = await res.text();
+        let data;
+        try { data = JSON.parse(text); } catch { data = null; }
+
+        if (!res.ok || !data || data.success !== true) {
+          console.error("RSVP submit failed:", res.status, text);
+          statusEl.textContent = "Could not submit RSVP. Please try again.";
+          return;
+        }
+
+        statusEl.textContent = "✅ RSVP submitted! Thank you.";
+
+        // optional: disable after submit
+        // form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
+
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Network error while submitting. Please try again.";
+      }
+    });
+  })();
+</script>
+
   
 </body>
 </html>
