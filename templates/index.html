@@ -106,43 +106,50 @@
   </script>
 
   <!-- HERO SECTION -->
-  <section id="home" class="relative h-screen w-full pt-24">
-    <img src="hero photo.jpg" alt="Wedding banner" class="absolute top-0 left-0 w-full h-full object-cover z-0">
-
-    <div class="absolute inset-0 bg-black bg-opacity-30 z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-32 md:pt-48">
+    <section id="home" class="relative h-screen w-full pt-24">
+    <!-- Hero image at 30% opacity -->
+    <img
+      src="hero_photo.jpg"
+      alt="Wedding banner"
+      class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-30"
+    >
+  
+    <!-- Overlay content -->
+    <div class="absolute inset-0 z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-32 md:pt-48">
       <h1 class="text-4xl mb-2">Samer Dib</h1>
       <h1 class="text-4xl mb-2">&</h1>
-      <h1 class="text-4xl mb-8">Cynthia Youwakim</h1>
+      <h1 class="text-4xl mb-10">Cynthia Youwakim</h1>
+  
       <p class="text-xl mb-4 font-body">Are Getting Married!</p>
-      <div class="h-6"></div>
+  
       <p class="text-xl font-body">Saturday, June 20, 2026</p>
-      <p class="text-xl font-body">Blanchic - Baabdath, Metn</p>
-    </div>
-
-    <div id="countdown"
-       class="mt-6 flex gap-4 justify-center text-center font-body">
-    <div class="bg-black/35 backdrop-blur-sm px-4 py-3 rounded-xl min-w-[90px]">
-      <div id="cd-days" class="text-3xl font-semibold leading-none">--</div>
-      <div class="text-xs tracking-widest uppercase mt-1">Days</div>
-    </div>
+      <p class="text-xl font-body mb-8">Blanchic - Baabdath, Metn</p>
   
-    <div class="bg-black/35 backdrop-blur-sm px-4 py-3 rounded-xl min-w-[90px]">
-      <div id="cd-hours" class="text-3xl font-semibold leading-none">--</div>
-      <div class="text-xs tracking-widest uppercase mt-1">Hours</div>
-    </div>
+      <!-- Countdown BELOW the text -->
+      <div id="countdown" class="flex flex-wrap gap-4 justify-center text-center font-body">
+        <div class="bg-white px-4 py-3 rounded-xl min-w-[90px] shadow">
+          <div id="cd-days" class="text-3xl font-semibold leading-none text-black">--</div>
+          <div class="text-xs tracking-widest uppercase mt-1 text-black/70">Days</div>
+        </div>
   
-    <div class="bg-black/35 backdrop-blur-sm px-4 py-3 rounded-xl min-w-[90px]">
-      <div id="cd-mins" class="text-3xl font-semibold leading-none">--</div>
-      <div class="text-xs tracking-widest uppercase mt-1">Minutes</div>
-    </div>
+        <div class="bg-white px-4 py-3 rounded-xl min-w-[90px] shadow">
+          <div id="cd-hours" class="text-3xl font-semibold leading-none text-black">--</div>
+          <div class="text-xs tracking-widest uppercase mt-1 text-black/70">Hours</div>
+        </div>
   
-    <div class="bg-black/35 backdrop-blur-sm px-4 py-3 rounded-xl min-w-[90px]">
-      <div id="cd-secs" class="text-3xl font-semibold leading-none">--</div>
-      <div class="text-xs tracking-widest uppercase mt-1">Seconds</div>
+        <div class="bg-white px-4 py-3 rounded-xl min-w-[90px] shadow">
+          <div id="cd-mins" class="text-3xl font-semibold leading-none text-black">--</div>
+          <div class="text-xs tracking-widest uppercase mt-1 text-black/70">Minutes</div>
+        </div>
+  
+        <div class="bg-white px-4 py-3 rounded-xl min-w-[90px] shadow">
+          <div id="cd-secs" class="text-3xl font-semibold leading-none text-black">--</div>
+          <div class="text-xs tracking-widest uppercase mt-1 text-black/70">Seconds</div>
+        </div>
+      </div>
     </div>
-  </div>
-
   </section>
+
 
 <section id="faq" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
   <h2 class="text-4xl text-center mb-10">Frequently Asked Questions</h2>
