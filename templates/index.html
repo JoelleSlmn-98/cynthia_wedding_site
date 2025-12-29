@@ -118,6 +118,30 @@
       <p class="text-xl font-body">Saturday, June 20, 2026</p>
       <p class="text-xl font-body">Blanchic - Baabdath, Metn</p>
     </div>
+
+    <div id="countdown"
+       class="mt-6 flex gap-4 justify-center text-center font-body">
+    <div class="bg-black/35 backdrop-blur-sm px-4 py-3 rounded-xl min-w-[90px]">
+      <div id="cd-days" class="text-3xl font-semibold leading-none">--</div>
+      <div class="text-xs tracking-widest uppercase mt-1">Days</div>
+    </div>
+  
+    <div class="bg-black/35 backdrop-blur-sm px-4 py-3 rounded-xl min-w-[90px]">
+      <div id="cd-hours" class="text-3xl font-semibold leading-none">--</div>
+      <div class="text-xs tracking-widest uppercase mt-1">Hours</div>
+    </div>
+  
+    <div class="bg-black/35 backdrop-blur-sm px-4 py-3 rounded-xl min-w-[90px]">
+      <div id="cd-mins" class="text-3xl font-semibold leading-none">--</div>
+      <div class="text-xs tracking-widest uppercase mt-1">Minutes</div>
+    </div>
+  
+    <div class="bg-black/35 backdrop-blur-sm px-4 py-3 rounded-xl min-w-[90px]">
+      <div id="cd-secs" class="text-3xl font-semibold leading-none">--</div>
+      <div class="text-xs tracking-widest uppercase mt-1">Seconds</div>
+    </div>
+  </div>
+
   </section>
 
 <section id="faq" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
@@ -287,6 +311,48 @@
   </section>
 
   <a href="#rsvp" class="floating-rsvp-btn">RSVP</a>
+
+  <script>
+    // Set your wedding date/time here (local time)
+    // If ceremony starts at 6pm, set "18:00:00"
+    const WEDDING_DATE = new Date("2026-06-20T18:00:00"); 
+  
+    const elDays = document.getElementById("cd-days");
+    const elHours = document.getElementById("cd-hours");
+    const elMins = document.getElementById("cd-mins");
+    const elSecs = document.getElementById("cd-secs");
+  
+    function pad2(n) {
+      return String(n).padStart(2, "0");
+    }
+  
+    function updateCountdown() {
+      const now = new Date();
+      let diff = WEDDING_DATE - now;
+  
+      if (diff <= 0) {
+        elDays.textContent = "0";
+        elHours.textContent = "00";
+        elMins.textContent = "00";
+        elSecs.textContent = "00";
+        return;
+      }
+  
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / (60 * 60 * 24));
+      const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
+      const mins = Math.floor((totalSeconds / 60) % 60);
+      const secs = Math.floor(totalSeconds % 60);
+  
+      elDays.textContent = days;
+      elHours.textContent = pad2(hours);
+      elMins.textContent = pad2(mins);
+      elSecs.textContent = pad2(secs);
+    }
+  
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
   
 </body>
 </html>
