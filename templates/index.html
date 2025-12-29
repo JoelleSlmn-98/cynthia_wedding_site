@@ -582,13 +582,13 @@
 
     function setLocked(isLocked) {
       if (isLocked) {
-        if (rsvpSection) rsvpSection.style.display = "none";
-        if (lockedSection) lockedSection.style.display = "block";
+        rsvpSection.style.display = "none";
+        lockedSection.style.display = "block";
         if (floatingBtn) floatingBtn.style.display = "none";
         if (whoEl) whoEl.textContent = "";
       } else {
-        if (rsvpSection) rsvpSection.style.display = "block";
-        if (lockedSection) lockedSection.style.display = "none";
+        rsvpSection.style.display = "block";
+        lockedSection.style.display = "none";
         if (floatingBtn) floatingBtn.style.display = "inline-flex";
         if (inviteEl) inviteEl.value = invite;
       }
@@ -602,18 +602,16 @@
     setLocked(false);
     if (whoEl) whoEl.textContent = "Loading your invitation…";
 
-    const cbName = "handleInviteLookup_" + Math.random().toString(36).slice(2);
-
-    window[cbName] = (data) => {
-      console.log("[RSVP] JSONP callback fired:", data);
-      try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+    // IMPORTANT: fixed global callback name
+    window.handleInviteLookup = (data) => {
+      console.log("[RSVP] callback fired:", data);
 
       if (!data || !data.success) {
-        if (whoEl) whoEl.textContent = "Invite not found. Please use the link you were sent.";
+        whoEl.textContent = "Invite not found. Please use the link you were sent.";
         return;
       }
 
-      if (whoEl) whoEl.textContent = `RSVP for: ${data.name || ""}`;
+      whoEl.textContent = `RSVP for: ${data.name || ""}`;
 
       const max = Number(data.maxPartySize || 1);
       if (countEl) {
@@ -623,29 +621,21 @@
       }
     };
 
-    const src =
-      `${API_URL}?inviteId=${encodeURIComponent(invite)}&callback=${encodeURIComponent(cbName)}&_ts=${Date.now()}`;
-
-    console.log("[RSVP] Injecting JSONP script:", src);
-
     const s = document.createElement("script");
-    s.src = src;
+    s.src = `${API_URL}?inviteId=${encodeURIComponent(invite)}&callback=handleInviteLookup&_ts=${Date.now()}`;
 
-    s.onload = () => {
-      console.log("[RSVP] Script tag loaded successfully.");
-      // Note: "loaded" just means the JS file arrived. The callback log above confirms it executed.
-    };
-
-    s.onerror = () => {
-      console.error("[RSVP] Script tag FAILED to load.");
-      if (whoEl) whoEl.textContent = "Could not load invite details. Please refresh.";
-      try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
-    };
-
+    // Don't show "failed" on script.onerror yet; use a timeout fallback instead
     document.body.appendChild(s);
+
+    // Fallback: if callback doesn't fire in 3s, show error
+    setTimeout(() => {
+      // If still showing loading text, we never got a callback
+      if (whoEl && whoEl.textContent.includes("Loading")) {
+        whoEl.textContent = "Could not load invite details. Please refresh.";
+      }
+    }, 3000);
   })();
 </script>
-
   
 </body>
 </html>
