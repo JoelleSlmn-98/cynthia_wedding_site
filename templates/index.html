@@ -186,31 +186,70 @@
     </div>
   </section>
 
-    <!-- RSVP -->
-    <section id="rsvp">
-    <h2>RSVP</h2>
+  <!-- RSVP -->
+  <section id="rsvp" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
+    <h2 class="text-4xl text-center mb-10">RSVP</h2>
   
-    <form id="rsvp-form">
-      <input type="hidden" id="inviteId">
+    <div class="max-w-2xl mx-auto">
+      <div class="rounded-2xl border border-[var(--border-color)] bg-white/70 backdrop-blur-sm shadow-sm p-6 md:p-10">
+        <p class="text-center font-body text-lg mb-8 text-[var(--text-color)]/80">
+          Please let us know if you’ll be joining us. We can’t wait to celebrate with you!
+        </p>
   
-      <label>
-        Will you be attending?
-        <select id="attending" required>
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </label>
+        <form id="rsvp-form" class="space-y-6">
+          <input type="hidden" id="inviteId" />
   
-      <label>
-        Dietary restrictions
-        <textarea id="dietary"></textarea>
-      </label>
+          <!-- Attending -->
+          <div>
+            <label for="attending" class="block font-body text-sm tracking-wide uppercase mb-2 text-[var(--text-color)]/80">
+              Will you be attending?
+            </label>
+            <select
+              id="attending"
+              required
+              class="w-full rounded-xl border border-[var(--border-color)] bg-white px-4 py-3 font-body text-base
+                     focus:outline-none focus:ring-2 focus:ring-[var(--text-color)]/30"
+            >
+              <option value="">Select an option</option>
+              <option value="Yes">Yes, I’ll be there</option>
+              <option value="No">No, I can’t make it</option>
+            </select>
+          </div>
   
-      <button type="submit">Submit RSVP</button>
-    </form>
+          <!-- Dietary -->
+          <div>
+            <label for="dietary" class="block font-body text-sm tracking-wide uppercase mb-2 text-[var(--text-color)]/80">
+              Dietary restrictions (optional)
+            </label>
+            <textarea
+              id="dietary"
+              rows="4"
+              placeholder="e.g., vegetarian, nut allergy, halal, gluten-free..."
+              class="w-full rounded-xl border border-[var(--border-color)] bg-white px-4 py-3 font-body text-base
+                     focus:outline-none focus:ring-2 focus:ring-[var(--text-color)]/30"
+            ></textarea>
+          </div>
+  
+          <!-- Submit -->
+          <div class="pt-2 flex justify-center">
+            <button
+              type="submit"
+              class="rounded-full px-8 py-3 font-body text-base tracking-wide
+                     border border-[var(--text-color)] text-[var(--text-color)]
+                     hover:bg-[var(--text-color)] hover:text-white transition"
+            >
+              Submit RSVP
+            </button>
+          </div>
+  
+          <!-- Optional tiny note -->
+          <p class="text-center text-sm font-body text-[var(--text-color)]/70 pt-2">
+            If you have any questions, check the FAQ or contact us.
+          </p>
+        </form>
+      </div>
+    </div>
   </section>
-
 
   <div class="flex items-center justify-center my-16">
     <hr class="border-t w-1/4" style="border-color: var(--text-color);">
