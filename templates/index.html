@@ -49,6 +49,10 @@
       letter-spacing: 0.02em;
     }
 
+    #rsvp {
+      display: none;
+    }
+  
     /* Utility classes (optional) */
     .font-body { font-family: 'LetterEditorial', serif; }
     .font-header { font-family: 'Mathilde', serif; }
@@ -200,6 +204,15 @@
   </section>
 
   <!-- RSVP -->
+  <section id="rsvp-locked" class="py-24 px-4 text-center text-lg">
+    <p>
+      RSVP is available via your personal invitation link.
+      <br>
+      If you believe this is a mistake, please contact the couple.
+    </p>
+  </section>
+
+  
   <section id="rsvp" class="py-24 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
     <h2 class="text-4xl text-center mb-10">RSVP</h2>
     <p id="rsvp-who" class="font-body text-2xl text-center mb-6"></p>
@@ -566,6 +579,22 @@
       whoEl.textContent = "Could not load invite details. Please refresh.";
     };
     document.body.appendChild(s);
+  }
+</script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const inviteId = params.get("invite");
+
+  const rsvpSection = document.getElementById("rsvp");
+  const lockedSection = document.getElementById("rsvp-locked");
+
+  if (inviteId) {
+    rsvpSection.style.display = "block";
+    lockedSection.style.display = "none";
+  } else {
+    rsvpSection.style.display = "none";
+    lockedSection.style.display = "block";
   }
 </script>
   
