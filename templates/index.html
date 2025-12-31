@@ -132,6 +132,21 @@
   html {
     scroll-behavior: smooth;
   }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details summary::after {
+    content: "▾";
+    float: right;
+    transition: transform 0.3s ease;
+  }
+
+  details[open] summary::after {
+    transform: rotate(180deg);
+  }
+    
   </style>
 </head>
 
@@ -188,7 +203,7 @@
     <section id="home" class="relative h-screen w-full pt-24">
     <!-- Hero image at 30% opacity -->
     <img
-      src="hero photo.jpg"
+      src="hp.jpg"
       alt="Wedding banner"
       class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-100"
     >
@@ -455,64 +470,83 @@
 
   <section id="faq" class="py-12 px-4 bg-[var(--bg-color)] text-[var(--text-color)]">
   <h2 class="text-4xl text-center mb-10">Frequently Asked Questions</h2>
-  <ul class="max-w-4xl mx-auto space-y-8 text-base font-body">
-    <li>
-      <strong>Can I bring a plus one?</strong>
-      <p class="mt-2">
-        Please refer to your invitation for plus-one details. If your invite includes a plus one, it will be clearly indicated when you RSVP. 
-        Unfortunately, we're unable to accommodate additional guests beyond those listed.
+
+  <div class="max-w-4xl mx-auto space-y-6 text-base font-body">
+    
+    <details class="border-b pb-4">
+      <summary class="cursor-pointer font-semibold text-lg">
+        Can I bring a plus one?
+      </summary>
+      <p class="mt-3">
+        Please refer to your invitation for plus-one details. If your invite includes a plus one, it will be clearly indicated when you RSVP. Unfortunately, we're unable to accommodate additional guests beyond those listed.
       </p>
-    </li>
-    <li>
-      <strong>What time should I arrive?</strong>
-      <p class="mt-2">
-        We recommend arriving about 15-30 minutes before the ceremony begins to allow time for parking and seating.
-        The ceremony will start promptly at <strong>6:00 PM</strong>. Full schedule details can be found in the Details section.
+    </details>
+
+    <details class="border-b pb-4">
+      <summary class="cursor-pointer font-semibold text-lg">
+        What time should I arrive?
+      </summary>
+      <p class="mt-3">
+        We recommend arriving about 15-30 minutes before the ceremony begins to allow time for parking and seating. The ceremony will start promptly at <strong>6:00 PM</strong>. Full schedule details can be found in the Details section.
       </p>
-    </li>
-    <li>
-      <strong>What will the weather be like?</strong>
-      <p class="mt-2">
-        It's summertime, so we're hoping for a bright and sunny day! That said, evenings can become cooler, 
-        so we suggest bringing a light jacket or shawl just in case.
+    </details>
+
+    <details class="border-b pb-4">
+      <summary class="cursor-pointer font-semibold text-lg">
+        What will the weather be like?
+      </summary>
+      <p class="mt-3">
+        It's summertime, so we're hoping for a bright and sunny day! That said, evenings can become cooler, so we suggest bringing a light jacket or shawl just in case.
       </p>
-    </li>
-    <li>
-      <strong>Who should I contact if I have questions?</strong>
-      <p class="mt-2">
-        If you have any questions leading up to the wedding, feel free to reach out to the bride or groom. 
-        You may also contact anyone in the wedding party for assistance.
+    </details>
+
+    <details class="border-b pb-4">
+      <summary class="cursor-pointer font-semibold text-lg">
+        Who should I contact if I have questions?
+      </summary>
+      <p class="mt-3">
+        If you have any questions leading up to the wedding, feel free to reach out to the bride or groom. You may also contact anyone in the wedding party for assistance.
       </p>
-    </li>
-    <li>
-      <strong>Is the wedding indoors or outdoors?</strong>
-      <p class="mt-2">
-        Both the ceremony and reception will take place entirely outdoors. 
-        Please plan accordingly for the weather and terrain.
+    </details>
+
+    <details class="border-b pb-4">
+      <summary class="cursor-pointer font-semibold text-lg">
+        Is the wedding indoors or outdoors?
+      </summary>
+      <p class="mt-3">
+        Both the ceremony and reception will take place entirely outdoors. Please plan accordingly for the weather and terrain.
       </p>
-    </li>
-    <li>
-      <strong>Where should I park?</strong>
-      <p class="mt-2">
-        Valet parking will be available at the venue for your convenience. 
-        No tipping is necessary for the valet staff.
+    </details>
+
+    <details class="border-b pb-4">
+      <summary class="cursor-pointer font-semibold text-lg">
+        Where should I park?
+      </summary>
+      <p class="mt-3">
+        Valet parking will be available at the venue for your convenience. No tipping is necessary for the valet staff.
       </p>
-    </li>
-    <li>
-      <strong>Is the venue accessibility-friendly?</strong>
-      <p class="mt-2">
-        Yes! The venue is fully accessible, with no stairs or steep inclines. 
-        If you have specific accessibility needs, please let us know in advance so we can assist.
+    </details>
+
+    <details class="border-b pb-4">
+      <summary class="cursor-pointer font-semibold text-lg">
+        Is the venue accessibility-friendly?
+      </summary>
+      <p class="mt-3">
+        Yes - the venue is fully accessible with no stairs or steep inclines.
+        If you have specific needs, please let us know in advance.
       </p>
-    </li>
-    <li>
-      <strong>What should I wear?</strong>
-      <p class="mt-2">
-        The dress code is <strong>formal attire</strong>. We encourage elegant evening wear.
-        Ladies-consider bringing an extra pair of comfortable shoes for all the dancing we have planned!
+    </details>
+
+    <details class="border-b pb-4">
+      <summary class="cursor-pointer font-semibold text-lg">
+        What should I wear?
+      </summary>
+      <p class="mt-3">
+        The dress code is <strong>formal attire</strong>. We encourage elegant evening wear. Ladies-consider bringing an extra pair of comfortable shoes for all the dancing we have planned!
       </p>
-    </li>
-  </ul>
+    </details>
+
+  </div>
 </section>
 
 
