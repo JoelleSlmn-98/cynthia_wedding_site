@@ -137,10 +137,18 @@
     display: none;
   }
 
+  details summary {
+    list-style: none;
+  }
+    
   details summary::after {
     content: "▾";
     float: right;
     transition: transform 0.3s ease;
+  }
+
+  details[open] summary::after {
+    transform: rotate(180deg);
   }
     
   </style>
