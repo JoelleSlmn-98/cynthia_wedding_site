@@ -335,6 +335,27 @@
             If you have any questions, check the FAQ or contact us.
           </p>
         </form>
+        <div id="rsvpSuccess" class="hidden mt-6 text-center">
+          <p class="text-lg font-body mb-4">
+            Your RSVP has been recorded 💚
+          </p>
+        
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a id="gcalLink"
+               target="_blank"
+               rel="noopener"
+               class="px-4 py-2 rounded-full border border-[var(--text-color)]
+                      hover:bg-[var(--hover-bg)] transition font-body text-sm">
+              Add to Google Calendar
+            </a>
+        
+            <a id="icsLink"
+               class="px-4 py-2 rounded-full border border-[var(--text-color)]
+                      hover:bg-[var(--hover-bg)] transition font-body text-sm">
+              Add to Apple / Outlook
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -735,6 +756,9 @@
 
         statusEl.textContent = "RSVP submitted! Thank you.";
 
+        document.getElementById("rsvpSuccess").classList.remove("hidden");
+        buildAddToCalendarLinks();
+
         // optional: disable after submit
         // form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
 
@@ -745,6 +769,66 @@
     });
   })();
 </script>
+
+<script>
+  function pad2(n) { return String(n).padStart(2, "0"); }
+
+  function toICSDateUTC(date) {
+    return (
+      date.getUTCFullYear() +
+      pad2(date.getUTCMonth() + 1) +
+      pad2(date.getUTCDate()) + "T" +
+      pad2(date.getUTCHours()) +
+      pad2(date.getUTCMinutes()) +
+      "00Z"
+    );
+  }
+
+  function escapeICS(text) {
+    return text.replace(/\\/g, "\\\\")
+               .replace(/\n/g, "\\n")
+               .replace(/,/g, "\\,")
+               .replace(/;/g, "\\;");
+  }
+
+  function buildAddToCalendarLinks() {
+    const title = "Samer & Cynthia’s Wedding";
+    const location = "Blanchic, Baabdath, Lebanon";
+    const description = "Wedding Ceremony & Reception";
+
+    // Ceremony at 6:00 PM Lebanon time (UTC+3 → 15:00 UTC)
+    const startUTC = new Date(Date.UTC(2026, 5, 20, 15, 0));
+    const endUTC   = new Date(Date.UTC(2026, 5, 20, 23, 0));
+
+    /* Google Calendar */
+    const gcalDates = `${toICSDateUTC(startUTC)}/${toICSDateUTC(endUTC)}`;
+    document.getElementById("gcalLink").href =
+      "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + `&text=${encodeURIComponent(title)}`
+      + `&dates=${encodeURIComponent(gcalDates)}`
+      + `&location=${encodeURIComponent(location)}`
+      + `&details=${encodeURIComponent(description)}`;
+
+    /* Apple / Outlook (.ics) */
+    const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding//EN
+BEGIN:VEVENT
+DTSTART:${toICSDateUTC(startUTC)}
+DTEND:${toICSDateUTC(endUTC)}
+SUMMARY:${escapeICS(title)}
+LOCATION:${escapeICS(location)}
+DESCRIPTION:${escapeICS(description)}
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    document.getElementById("icsLink").href = URL.createObjectURL(blob);
+    document.getElementById("icsLink").download = "Samer-Cynthia-Wedding.ics";
+  }
+</script>
+
 
   
 </body>
