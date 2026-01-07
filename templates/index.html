@@ -765,7 +765,11 @@
       } catch (err) {
         console.error(err);
         statusEl.textContent = "Thank you!";
+
+        document.getElementById("rsvpSuccess").classList.remove("hidden");
+        buildAddToCalendarLinks();
       }
+      
     });
   })();
 </script>
