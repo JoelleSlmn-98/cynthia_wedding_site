@@ -73,6 +73,22 @@
       opacity: 0.9;
     }
 
+    .hero-text-box {
+      background: rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      max-width: 720px;
+    }
+    
+    .hero-text {
+      color: #f8f4ee;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    }
+    
+    .hero-subtext {
+      color: rgba(248, 244, 238, 0.78);
+    }
+
   /* FAQ question size */
   #faq ul li > strong {
     font-size: 1.15rem;
@@ -203,51 +219,54 @@
     });
   </script>
 
-  <!-- HERO SECTION -->
-    <section id="home" class="relative h-screen w-full pt-24">
-    <!-- Hero image at 30% opacity -->
-    <img
-      src="hero_photo.jpg"
-      alt="Wedding banner"
-      class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-100"
-    >
-  
-    <!-- Overlay content -->
-    <div class="absolute inset-0 z-10 flex flex-col justify-center items-center text-center text-white px-4 pt-32 md:pt-48">
-      <h1 class="text-4xl mb-2">Samer Dib</h1>
-      <h1 class="text-4xl mb-2">&</h1>
-      <h1 class="text-4xl mb-10">Cynthia Youwakim</h1>
-  
-      <p class="text-xl mb-4 font-body">Are Getting Married!</p>
-  
-      <p class="text-xl font-body">Saturday, June 20, 2026</p>
-      <p class="text-xl font-body mb-8">Blanchic - Baabdath, Metn</p>
-  
-      <!-- Countdown BELOW the text -->
+  <!-- HOME -->
+  <section id="home" class="relative h-screen w-full pt-24">
+  <!-- Hero image -->
+  <img
+    src="hp2.jpg"
+    alt="Wedding banner"
+    class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-100"
+  >
+
+  <!-- Overlay content -->
+  <div class="absolute inset-0 z-10 flex flex-col justify-center items-center text-center px-4 pt-32 md:pt-48">
+    
+    <!-- Transparent text background box -->
+    <div class="hero-text-box px-6 py-8 md:px-10 md:py-10 rounded-2xl">
+      <h1 class="text-4xl mb-2 hero-text">Samer Dib</h1>
+      <h1 class="text-4xl mb-2 hero-text">&</h1>
+      <h1 class="text-4xl mb-10 hero-text">Cynthia Youwakim</h1>
+
+      <p class="text-xl mb-4 font-body hero-text">Are Getting Married!</p>
+
+      <p class="text-xl font-body hero-text">Saturday, June 20, 2026</p>
+      <p class="text-xl font-body mb-8 hero-text">Blanchic - Baabdath, Metn</p>
+
+      <!-- Countdown -->
       <div id="countdown" class="flex flex-wrap gap-4 justify-center text-center font-body">
-        <div class="px-4 py-3 rounded-base min-w-[90px] shadow">
-          <div id="cd-days" class="text-lg font-semibold leading-none text-white">--</div>
-          <div class="text-xs tracking-widest uppercase mt-1 text-white/70">Days</div>
+        <div class="px-4 py-3 min-w-[90px]">
+          <div id="cd-days" class="text-lg font-semibold leading-none hero-text">--</div>
+          <div class="text-xs tracking-widest uppercase mt-1 hero-subtext">Days</div>
         </div>
-  
-        <div class="px-4 py-3 rounded-base min-w-[90px] shadow">
-          <div id="cd-hours" class="text-lg font-semibold leading-none text-white">--</div>
-          <div class="text-xs tracking-widest uppercase mt-1 text-white/70">Hours</div>
+
+        <div class="px-4 py-3 min-w-[90px]">
+          <div id="cd-hours" class="text-lg font-semibold leading-none hero-text">--</div>
+          <div class="text-xs tracking-widest uppercase mt-1 hero-subtext">Hours</div>
         </div>
-  
-        <div class="px-4 py-3 rounded-base min-w-[90px] shadow">
-          <div id="cd-mins" class="text-lg font-semibold leading-none text-white">--</div>
-          <div class="text-xs tracking-widest uppercase mt-1 text-white/70">Minutes</div>
+
+        <div class="px-4 py-3 min-w-[90px]">
+          <div id="cd-mins" class="text-lg font-semibold leading-none hero-text">--</div>
+          <div class="text-xs tracking-widest uppercase mt-1 hero-subtext">Minutes</div>
         </div>
-  
-        <div class="px-4 py-3 rounded-base min-w-[90px] shadow">
-          <div id="cd-secs" class="text-lg font-semibold leading-none text-white">--</div>
-          <div class="text-xs tracking-widest uppercase mt-1 text-white/70">Seconds</div>
+
+        <div class="px-4 py-3 min-w-[90px]">
+          <div id="cd-secs" class="text-lg font-semibold leading-none hero-text">--</div>
+          <div class="text-xs tracking-widest uppercase mt-1 hero-subtext">Seconds</div>
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
   <!-- RSVP -->
   <section id="rsvp-locked" class="py-12 px-4 text-center text-lg">
     <h2 class="text-4xl text-center mb-10">RSVP</h2>
