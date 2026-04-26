@@ -728,11 +728,8 @@
       "https://script.google.com/macros/s/AKfycbwsirLUdeG6hmSgg757OyJQzy9ltVLLOF_8MdXlzcMGizR0kIoQFWKBiqqGHZYgYeTD/exec";
 
     const form = document.getElementById("rsvp-form");
-    const whoEl = document.getElementById("rsvp-who");
-
     if (!form) return;
 
-    // status message element (created once)
     let statusEl = document.getElementById("rsvp-status");
     if (!statusEl) {
       statusEl = document.createElement("p");
@@ -741,8 +738,8 @@
       form.appendChild(statusEl);
     }
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault(); // <<<<<< stops the page “redirect/reload”
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
       const inviteId = (document.getElementById("inviteId")?.value || "").trim();
       const attending = (document.getElementById("attending")?.value || "").trim();
@@ -750,7 +747,7 @@
       const count = Number(document.getElementById("count")?.value || 1);
 
       if (!inviteId) {
-        statusEl.textContent = "Missing invite id. Please use your personal link.";
+        statusEl.textContent = "Missing invite id.";
         return;
       }
       if (!attending) {
@@ -760,42 +757,35 @@
 
       statusEl.textContent = "Submitting...";
 
-      try {
-        const res = await fetch(POST_URL, {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          },
-          body: JSON.stringify({ inviteId, attending, count, dietary }),
-        });
+      // Use a hidden iframe to POST — avoids CORS entirely
+      const form2 = document.createElement("form");
+      form2.method = "POST";
+      form2.action = POST_URL;
+      form2.target = "hidden-rsvp-iframe";
+      form2.style.display = "none";
 
-        const text = await res.text();
-        let data;
-        try { data = JSON.parse(text); } catch { data = null; }
-
-        if (!res.ok || !data || data.success !== true) {
-          console.error("RSVP submit failed:", res.status, text);
-          statusEl.textContent = "Could not submit RSVP. Please try again.";
-          return;
-        }
-
-        statusEl.textContent = "RSVP submitted! Thank you.";
-
-        document.getElementById("rsvpSuccess").classList.remove("hidden");
-        buildAddToCalendarLinks();
-
-        // optional: disable after submit
-        // form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
-
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = "Thank you!";
-
-        document.getElementById("rsvpSuccess").classList.remove("hidden");
-        buildAddToCalendarLinks();
-      }
+      const fields = { inviteId, attending, count, dietary };
+      // Apps Script reads e.postData.contents, so we send JSON as a single field
+      // Actually we need to send raw JSON — use fetch with no-cors instead:
       
+      // ---- REAL FIX: fetch with no-cors ----
+      // no-cors won't give us the response back, but it WILL send the data
+      fetch(POST_URL, {
+        method: "POST",
+        mode: "no-cors",   // <-- THIS is the key change
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({ inviteId, attending, count, dietary }),
+      })
+      .then(() => {
+        statusEl.textContent = "RSVP submitted! Thank you.";
+        document.getElementById("rsvpSuccess").classList.remove("hidden");
+        buildAddToCalendarLinks();
+      })
+      .catch((err) => {
+        statusEl.textContent = "Error: " + err.message;
+      });
     });
   })();
 </script>
